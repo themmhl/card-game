@@ -311,7 +311,6 @@ Item {
             anchors.topMargin: 40
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: function () {
-                console.log("password changed")
                 console.log("Username: " + usernamee.text)
                 console.log("Password: " + passwordd.text)
                 signuproot.visible = false
