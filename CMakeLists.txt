@@ -17,6 +17,7 @@ qt_add_qml_module(card_game
         QML_FILES
         Main.qml Card.qml MButton.qml MTextBox.qml
         QML_FILES MainMenu.qml
+        QML_FILES Login.qml
 )
 
 

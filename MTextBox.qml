@@ -4,8 +4,9 @@ import QtQuick.Shapes
 
 Item {
     id: root
-    property string text: "edfg"
+    property string text: textbox.text
     property color bgcolor: "#19a8a8a8"
+    property int echoMode: TextInput.Normal
     Rectangle {
         id: rootrect
         anchors.fill: parent
@@ -17,7 +18,7 @@ Item {
 
         TextInput {
             id: textbox
-            text: qsTr(root.text)
+            text: ""
             anchors.centerIn: parent
             anchors.fill: parent
             color: "white"
@@ -37,6 +38,7 @@ Item {
                     rootrect.color.a = 0.1
                 }
             }
+            echoMode: root.echoMode
         }
         SequentialAnimation {
             id: mouseincolor
