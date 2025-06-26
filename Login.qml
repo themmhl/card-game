@@ -170,7 +170,6 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: function () {
                 root.heightt = 500
-                console.log("password changed")
                 console.log("Username: " + phonenumber.text)
                 console.log("Password: " + newpass.text)
             }
