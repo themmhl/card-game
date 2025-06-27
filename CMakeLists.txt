@@ -10,7 +10,9 @@ set(CMAKE_PREFIX_PATH "/home/jeff/Qt/6.9.0/gcc_64")
 find_package(Qt6 REQUIRED COMPONENTS Quick )
 message(STATUS "Using Qt from: ${Qt6_DIR}")
 qt_standard_project_setup(REQUIRES 6.8)
-add_executable(card_game main.cpp)
+add_executable(card_game main.cpp
+        Card.cpp
+        Card.h)
 qt_add_qml_module(card_game
         URI card-game
         VERSION 1.0

@@ -2,90 +2,95 @@ import QtQuick
 import QtQuick.Shapes
 import QtQuick.Controls.Material
 
-Window {
+Item {
+    id: root
+    anchors.fill: parent
+    visible: true
     width: 632
     height: 800
-    visible: true
-    title: qsTr("Hello World")
-    color: "black"
+    property string username: "Mohammad mahdi"
     Text {
-        id: ip_address
-        text: "127.0.0.1"
-        font.family: "Source Code Pro"
-        x: 107
-        y: 218
-        font.underline: true
-        font.pixelSize: 100
-        color: "#75e8ff"
-    }
-    Text {
+        id: title
         text: "Poffer Card"
+        font.family: "Sans Serif"
         font.bold: true
-        x: 199
-        y: 92
-        font.pixelSize: 44
-        color: "#6588ce"
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: 100
+        font.pixelSize: 48
+        color: "#0996b5"
     }
     Text {
-        text: "Or join an existing match:"
+        text: "Join a match using\nIP Address:"
         font.family: "Noto Sans"
-        x: 126
-        y: 413
-        font.pixelSize: 32
-        color: "#bd6687cf"
+        anchors.horizontalCenter: parent.horizontalCenter
+        horizontalAlignment: Text.AlignHCenter
+        anchors.top: title.bottom
+        anchors.topMargin: 70
+        font.pixelSize: 50
+        color: "#cccccc"
     }
+    Text {
+        text: "Logged in as:"
+        anchors.bottom: pfp.top
+        anchors.bottomMargin: 4
+        anchors.left: pfp.left
+        color: "#cccccc"
+        font.pointSize: 10
+    }
+    Row {
+        id: pfp
+        y: 534
+        spacing: 8
+        anchors.horizontalCenter: parent.horizontalCenter
+        Rectangle {
+            height: 60
+            width: 60
+            radius: 30
+            color: "purple"
+            Text {
+                text: root.username.charAt(0)
+                font.pointSize: 24
+                anchors.centerIn: parent
+                color: "white"
+            }
+        }
+        Text {
+            text: root.username
+            anchors.verticalCenter: parent.verticalCenter
+            font.family: "Noto Sans"
 
-    Text {
-        text: "Enter this in other player' instances:"
-        font.family: "Noto Sans"
-        x: 49
-        y: 162
-        font.pixelSize: 32
-        color: "#bd6687cf"
-    }
-    Text {
-        text: "logged in as:   fghjkldfg"
-        font.family: "Noto Sans"
-        x: 134
-        y: 670
-        font.pixelSize: 32
-        color: "#bd6687cf"
+            font.pixelSize: 32
+            color: "#cccccc"
+        }
     }
     MButton {
         x: 126
-        y: 574
+        y: 624
         width: 180
         height: 60
         text: "History"
     }
     MButton {
         x: 331
-        y: 574
+        y: 624
         width: 180
         height: 60
         text: "Logout"
     }
     MTextBox {
-        x: 126
-        y: 480
+        anchors.horizontalCenter: parent.horizontalCenter
+        horizontalAlignment: TextInput.AlignLeft
+        y: 380
         height: 70
         width: 385
         bgcolor: "#1975e8ff"
     }
     MButton {
-        x: 446
-        y: 486
+        x: 402
+        y: 386
         height: 58
-        width: 58
-        initial_color: "green"
-        color_opacity: 0.7
-        text: "GO"
-        onClicked: function () {
-            if (initial_color == "green") {
-                initial_color = "red"
-            } else {
-                initial_color = "green"
-            }
-        }
+        width: 100
+
+        text: "Join"
     }
 }
