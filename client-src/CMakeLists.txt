@@ -1,43 +1,60 @@
+# حداقل نسخه مورد نیاز CMake
 cmake_minimum_required(VERSION 3.16)
-project(card_game)
 
+# نام پروژه و زبان برنامه‌نویسی
+project(client-src LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+# تنظیم استاندارد C++
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_PREFIX_PATH "/home/jeff/Qt/6.9.0/gcc_64")
+# فعال‌سازی ابزارهای خودکار Qt برای کامپایل سیگنال/اسلات، منابع و فایل‌های UI
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
+# پیدا کردن پکیج‌ها و ماژول‌های مورد نیاز Qt6
+# با توجه به وجود ServerHandler، ماژول Network هم اضافه شده است
+find_package(Qt6 COMPONENTS Core Gui Qml Quick Network REQUIRED)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Quick Network)
-message(STATUS "Using Qt from: ${Qt6_DIR}")
-qt_standard_project_setup(REQUIRES 6.8)
-add_executable(card_game main.cpp
-        Card.cpp
-        Card.h
-        Match.cpp
-        Match.h
-        Round.cpp
-        Round.h
-        ServerHandler.cpp
-        ServerHandler.h
-        Player.cpp
-        Player.h)
-qt_add_qml_module(card_game
-        URI card-game
-        VERSION 1.0
-        QML_FILES
-        Main.qml Card.qml MButton.qml MTextBox.qml
-        QML_FILES MainMenu.qml
-        QML_FILES Login.qml
+# لیست کردن فایل‌های سورس C++
+set(PROJECT_SOURCES
+    main.cpp
+    Card.cpp
+    Match.cpp
+    Player.cpp
+    Round.cpp
+    ServerHandler.cpp
 )
 
-
-target_link_libraries(card_game
-        PRIVATE Qt6::Quick Qt6::Network Qt6::Core
+# لیست کردن فایل‌های هدر C++
+# (این کار به نمایش بهتر فایل‌ها در برخی IDEها کمک می‌کند)
+set(PROJECT_HEADERS
+    Card.h
+    Match.h
+    Player.h
+    Round.h
+    ServerHandler.h
 )
 
-include(GNUInstallDirs)
-install(TARGETS card_game
-        BUNDLE DESTINATION .
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# برای مدیریت فایل‌های QML، بهترین راه استفاده از فایل منابع Qt (.qrc) است.
+# یک فایل به نام qml.qrc بسازید و به لیست منابع اضافه کنید.
+set(PROJECT_RESOURCES
+    qml.qrc
+)
+
+# ساخت فایل اجرایی نهایی
+add_executable(${PROJECT_NAME}
+    ${PROJECT_SOURCES}
+    ${PROJECT_HEADERS}
+    ${PROJECT_RESOURCES}
+)
+
+# لینک کردن کتابخانه‌های Qt به پروژه
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    Qt::Quick
+    Qt::Network
 )
