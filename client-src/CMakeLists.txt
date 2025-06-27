@@ -12,7 +12,11 @@ message(STATUS "Using Qt from: ${Qt6_DIR}")
 qt_standard_project_setup(REQUIRES 6.8)
 add_executable(card_game main.cpp
         Card.cpp
-        Card.h)
+        Card.h
+        Match.cpp
+        Match.h
+        Round.cpp
+        Round.h)
 qt_add_qml_module(card_game
         URI card-game
         VERSION 1.0
