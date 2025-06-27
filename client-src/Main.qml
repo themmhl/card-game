@@ -8,6 +8,8 @@ Window {
     visible: true
     title: qsTr("Hello World")
     color: "#2e2e2e"
-    Login {id:login}
+    Login {
+        id: login
+    }
     height: login.heightt
 }

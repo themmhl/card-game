@@ -72,6 +72,10 @@ Item {
                 console.log("Login clicked")
                 console.log("Username: " + root.username)
                 console.log("Password: " + root.password)
+                loginroot.visible = false
+                mainmenu.username = root.username
+                mainmenu.visible = true
+                root.heightt = 800
             }
         }
 
@@ -217,7 +221,6 @@ Item {
             anchors.topMargin: 30
             anchors.horizontalCenter: parent.horizontalCenter
             text: ""
-            echoMode: TextInput.Password
         }
         Text {
             text: "Last Name:"
@@ -236,7 +239,6 @@ Item {
             anchors.topMargin: 30
             anchors.horizontalCenter: parent.horizontalCenter
             text: ""
-            echoMode: TextInput.Password
         }
         Text {
             text: "Phone Number:"
@@ -255,7 +257,6 @@ Item {
             anchors.topMargin: 30
             anchors.horizontalCenter: parent.horizontalCenter
             text: ""
-            echoMode: TextInput.Password
         }
         Text {
             text: "Email address:"
@@ -318,5 +319,9 @@ Item {
                 root.heightt = 600
             }
         }
+    }
+    MainMenu {
+        id: mainmenu
+        visible: false
     }
 }

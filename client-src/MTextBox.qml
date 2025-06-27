@@ -7,6 +7,7 @@ Item {
     property string text: textbox.text
     property color bgcolor: "#19a8a8a8"
     property int echoMode: TextInput.Normal
+    property var horizontalAlignment: TextInput.AlignHCenter
     Rectangle {
         id: rootrect
         anchors.fill: parent
@@ -17,13 +18,14 @@ Item {
         border.color: "#BA68C8"
 
         TextInput {
+            leftPadding: height / 2
             id: textbox
             text: ""
             anchors.centerIn: parent
             anchors.fill: parent
             color: "white"
             font.pointSize: 24
-            horizontalAlignment: TextInput.AlignHCenter
+            horizontalAlignment: root.horizontalAlignment
             verticalAlignment: TextInput.AlignVCenter
             z: 2
             onFocusChanged: {

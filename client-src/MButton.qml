@@ -144,11 +144,13 @@ Item {
             property: "opacity"
             from: 1
             to: 0
-            duration: 360
+            duration: 100
             onFinished: () => {
                             shape.radius = 0
                             shape.visible = false
                             shape.opacity = 1
+                            //so you see the beautiful animation before anything
+                            root.onClicked()
                         }
         }
         PropertyAnimation {
@@ -177,9 +179,10 @@ Item {
                            = (root.width - mouseX > mouseX) ? root.width - mouseX : mouseX
                            shape.visible = true
                            gradanimation.start()
-                           root.onClicked()
                        }
-            onReleased: mouseup.start()
+            onReleased: {
+                mouseup.start()
+            }
         }
     }
 }
