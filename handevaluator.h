@@ -15,12 +15,14 @@ enum class HandRankType {
     PENTHOUSE_HAND,
     FOUR_OF_A_KIND,
     ORDER_HAND,
-    GOLDEN_HAND
+    GOLDEN_HAND,
+    NO_RANK
 };
 class HandEvaluator
 {
 public:
     HandEvaluator();
+    explicit HandEvaluator(QVector<Card> Hand) : Hand(std::move(Hand)) {}
     HandRankType evaluateHand(QVector<Card> hand);
 
 private:
