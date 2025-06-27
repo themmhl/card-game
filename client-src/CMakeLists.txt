@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_PREFIX_PATH "/home/jeff/Qt/6.9.0/gcc_64")
 
 
-find_package(Qt6 REQUIRED COMPONENTS Quick )
+find_package(Qt6 REQUIRED COMPONENTS Core Quick Network)
 message(STATUS "Using Qt from: ${Qt6_DIR}")
 qt_standard_project_setup(REQUIRES 6.8)
 add_executable(card_game main.cpp
@@ -16,7 +16,11 @@ add_executable(card_game main.cpp
         Match.cpp
         Match.h
         Round.cpp
-        Round.h)
+        Round.h
+        ServerHandler.cpp
+        ServerHandler.h
+        Player.cpp
+        Player.h)
 qt_add_qml_module(card_game
         URI card-game
         VERSION 1.0
@@ -28,7 +32,7 @@ qt_add_qml_module(card_game
 
 
 target_link_libraries(card_game
-        PRIVATE Qt6::Quick
+        PRIVATE Qt6::Quick Qt6::Network Qt6::Core
 )
 
 include(GNUInstallDirs)
