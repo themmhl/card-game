@@ -22,7 +22,6 @@ class HandEvaluator
 {
 public:
     HandEvaluator();
-    explicit HandEvaluator(QVector<Card> Hand) : Hand(std::move(Hand)) {}
     HandRankType evaluateHand(QVector<Card> hand);
 
 private:
