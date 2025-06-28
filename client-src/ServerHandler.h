@@ -2,7 +2,7 @@
 #define SERVERHANDLER_H
 #include <QTcpSocket>
 #include <QObject>
-
+#include <QtQml/qqmlregistration.h>
 #include "Player.h"
 using namespace std;
 

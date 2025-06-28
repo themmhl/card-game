@@ -1,10 +1,9 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/">
-    <file>Main.qml</file>
-    <file>Card.qml</file>
     <file>Login.qml</file>
+    <file>main.qml</file>
     <file>MainMenu.qml</file>
     <file>MButton.qml</file>
     <file>MTextBox.qml</file>
-</qresource>
+    </qresource>
 </RCC>
