@@ -1,0 +1,85 @@
+[33mcommit 75b2f986e4656136379f895425c7b77f3e9ff5ed[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: bcd7e2f ffbba8d
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 16:54:40 2025 -0400
+
+    Merge branch 'feature/qml-ui'
+
+[33mcommit bcd7e2fd2ad759697bb1ce518471f0c593841f4e[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 16:49:27 2025 -0400
+
+    Added GameHandler
+
+[33mcommit ffbba8d245efbc829616a0d4556552112010d54f[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 16:42:54 2025 -0400
+
+    Added ServerHandler.cpp functions.
+
+[33mcommit 3f4cdb1cc38f9f20f017fabad37e32131bdf7247[m
+Merge: b06928d 83ab066
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 09:55:00 2025 -0400
+
+    Merge branch 'feature/qml-ui' with main
+
+[33mcommit 83ab0662ee9a13dccbfd6403666c4898471c9ce8[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 09:52:45 2025 -0400
+
+    organized server and client codebases
+
+[33mcommit 58c7588c025489f91447917cf8a9974300d0a934[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 09:49:06 2025 -0400
+
+    organized server and client codebases
+
+[33mcommit f51eb301143023b51063ef5373dad66fd69602e9[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Fri Jun 27 09:29:18 2025 -0400
+
+    Added Card type.
+
+[33mcommit 871ac2f1d58a0f543508cf47c2703e93c285a79e[m
+Author: mohammad mahdi <81001380+themmhl@users.noreply.github.com>
+Date:   Fri Jun 27 02:26:32 2025 -0400
+
+    Update README.md
+
+[33mcommit b06928d830ed0b2464b93e8a0aa1fdec860dc05c[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Thu Jun 26 15:57:10 2025 -0400
+
+    Added Readme.
+
+[33mcommit f795f3ae730231812cd9b7e3e12a557c8de7242d[m
+Author: mohammadmahdi <mmhl2008@outlook.com>
+Date:   Thu Jun 26 15:53:27 2025 -0400
+
+    Another Test
+
+[33mcommit 083c13b366644d524a3924f45a07d7eca1ff7ca8[m
+Author: mohammadmahdi <themmhl@github.com>
+Date:   Thu Jun 26 15:51:08 2025 -0400
+
+    Test
+
+[33mcommit a175aa0e0064c8712e2791fad24692e4fa5e21d6[m
+Author: mohammad mahdi <m@gmail.com>
+Date:   Thu Jun 26 15:44:44 2025 -0400
+
+    Added login and signup related UIs
+
+[33mcommit 3af3acf757c87ac9a37d508cc4b144e53833bd07[m
+Author: mohammad mahdi <m@gmail.com>
+Date:   Wed Jun 25 21:39:49 2025 -0400
+
+    my qml ui branch initial commit
+
+[33mcommit 2abad776dbde5924ac9504e995eaa3d9268b93d4[m
+Author: mohammad mahdi <m@gmail.com>
+Date:   Wed Jun 25 20:31:39 2025 -0400
+
+    Adding the existing files

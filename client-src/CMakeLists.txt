@@ -28,6 +28,7 @@ qt_add_qml_module(card_game
         Main.qml Card.qml MButton.qml MTextBox.qml
         QML_FILES MainMenu.qml
         QML_FILES Login.qml
+        QML_FILES ServerSetup.qml
 )
 
 
