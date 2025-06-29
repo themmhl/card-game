@@ -23,6 +23,7 @@ public:
     bool isMyTurn() const;
     void setMyTurn(bool isTurn);
     void setHand(const QVector<Card>& hand);
+    void addCard(const Card& card);
     QVector<Card> getHand() const;
 
 };

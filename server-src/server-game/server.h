@@ -13,8 +13,10 @@
 #include "player.h"
 #include "card.h"
 #include "game.h"
+#include "handlecard.h"
 
-enum SERVER_CODES { LOGIN, SIGNUP, LOGOUT, EDIT_INFO, FORGOT_PASSWORD, START_GAME };
+enum SERVER_CODES { LOGIN, SIGNUP, LOGOUT, EDIT_INFO, FORGOT_PASSWORD, START_GAME,
+    GET_AVAILABLE_CARDS, CHOOSE_CARD};
 class Server:public QObject
 {
     Q_OBJECT
@@ -29,6 +31,7 @@ private slots:
     void handleDisconnected();
     void processClientRequest();
     void triggerNewGame();
+    void onGameOver();
 
 private:
     void handleStartGame(const QJsonObject& request, QTcpSocket* socket);
@@ -37,6 +40,7 @@ private:
     void handleLogOut(const QJsonObject& request, QTcpSocket* socket);
     void handleEditInfo(const QJsonObject& request, QTcpSocket* socket);
     void handleForgetPassword(const QJsonObject& request, QTcpSocket* socket);
+    void handleGetAvailableCards(const QJsonObject& request, QTcpSocket* socket);
     void sendJsonReact(QTcpSocket* socket, SERVER_CODES request,QString message);
     void addNewSocket(QTcpSocket *socket);
     QTcpServer *tcpServer;
@@ -45,11 +49,10 @@ private:
     QMap<QTcpSocket*, QString> loggedInUsers;
     QList<QTcpSocket*> waitingQueue;
     QList<Player*> gamePlayers;
-    Deck gameDeck;
-    std::nullptr_t game;
-    QVector<QPair<Player*, QVector<Card>>> currentPlayerCards; // برای نگهداری دست ۷تایی هر بازیکن
+    HandleCard gameDeck;
+    QVector<QPair<Player*, QVector<Card>>> currentPlayerCards;
     QVector<Card> initialCards;
-
+    Game* game;
 };
 
 

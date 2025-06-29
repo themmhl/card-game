@@ -7,11 +7,10 @@
 Server::Server(QObject *parent): QObject(parent)
 {
     tcpServer = new QTcpServer(this);
-
-    game = nullptr;
-
     connect(tcpServer, &QTcpServer::newConnection,this,&Server::handleNewConnection);
     connect(this, &Server::gameReadyToStart, this, &Server::triggerNewGame);
+    game = nullptr;
+
 }
 
 Server::~Server() {}
@@ -39,15 +38,6 @@ void Server::handleNewConnection()
 
 }
 
-void Server::addNewSocket(QTcpSocket *socket)
-{
-    socketList.append(socket);
-    connect(socket, &QTcpSocket::readyRead, this, &Server::processClientRequest);
-    connect(socket, &QTcpSocket::disconnected, this, &Server::handleDisconnected);
-    qDebug() <<"new client with seocketDescriptor:"<<QString::number(socket->socketDescriptor())<< "connected";
-
-}
-
 void Server::handleDisconnected()
 {
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(sender());
@@ -65,6 +55,16 @@ void Server::handleDisconnected()
     qDebug() << "Client disconnected. Total clients:" << this->socketList.size();
 
 }
+
+void Server::addNewSocket(QTcpSocket *socket)
+{
+    socketList.append(socket);
+    connect(socket, &QTcpSocket::readyRead, this, &Server::processClientRequest);
+    connect(socket, &QTcpSocket::disconnected, this, &Server::handleDisconnected);
+    qDebug() <<"new client with seocketDescriptor:"<<QString::number(socket->socketDescriptor())<< "connected";
+
+}
+
 void Server::processClientRequest()
 {
     QTcpSocket *socket = qobject_cast<QTcpSocket*>(sender());
@@ -104,6 +104,15 @@ void Server::processClientRequest()
         break;
     case START_GAME:
         handleStartGame(requestObject,socket);
+        break;
+    case GET_GAME_STATE:
+        break;
+    case GET_AVAILABLE_CARDS:
+        handleGetAvailableCards(requestObject,socket);
+        break;
+    case CHOOSE_CARD:
+        if (this->game != nullptr)game->handlePlayerChoice(socket,requestObject);
+        break;
     default:
         qDebug() << "Received unknown request type:" << type;
         break;
@@ -112,11 +121,26 @@ void Server::processClientRequest()
 
 void Server::triggerNewGame()
 {
+    if (game != nullptr)
+    {
+        qDebug() << "Cannot start a new game, a game is already in progress.";
+        return;
+    }
+
     QTcpSocket* player1Socket = waitingQueue.takeFirst();
     QTcpSocket* player2Socket = waitingQueue.takeFirst();
     QString username1 = loggedInUsers.value(player1Socket);
     QString username2 = loggedInUsers.value(player2Socket);
+    UserAccount* p1Account = &dataBase[username1];
+    UserAccount* p2Account = &dataBase[username2];
+    Player* player1 = new Player(p1Account, player1Socket, this);
+    Player* player2 = new Player(p2Account, player2Socket, this);
 
+    QList<Player*> gamePlayers;
+    gamePlayers.append(player1);
+    gamePlayers.append(player2);
+
+    game = new Game( gamePlayers,this);
     QJsonObject responseToPlayer1;
     responseToPlayer1["type"] = START_GAME;
     responseToPlayer1["message"] = "SUCCESS2";
@@ -128,7 +152,8 @@ void Server::triggerNewGame()
     responseToPlayer2["message"] = "SUCCESS2";
     responseToPlayer2["opponent_username"] = username1;
     player2Socket->write(QJsonDocument(responseToPlayer2).toJson());
-
+    connect(this->game, &Game::gameOver, this, &Server::onGameOver);
+    game->startGame();
 }
 
 void Server::handleStartGame(const QJsonObject &request, QTcpSocket *socket)
@@ -143,6 +168,7 @@ void Server::handleStartGame(const QJsonObject &request, QTcpSocket *socket)
     qDebug() << "MATCHMAKING: user" << username << " queue size:" << this->waitingQueue.size();
     this->sendJsonReact(socket, START_GAME, "SUCCESS");
 }
+
 void Server::handleSignUp(const QJsonObject& request, QTcpSocket* socket){
     QString username = request["username"].toString();
     QString hashedPassword = request["password_hashed"].toString();
@@ -281,6 +307,14 @@ void Server::handleForgetPassword(const QJsonObject &request, QTcpSocket *socket
     }
 }
 
+void Server::handleGetAvailableCards(const QJsonObject& request, QTcpSocket* socket) {
+    if (game == nullptr||loggedInUsers.contains(socket)) {
+        qDebug() << "error in handle get available cards";
+        return;
+    }
+    game->handleGetAvailableCards(socket);
+}
+
 void Server::sendJsonReact(QTcpSocket *socket, SERVER_CODES request, QString message)
 {
     QJsonObject responseObject;
@@ -295,5 +329,10 @@ void Server::sendJsonReact(QTcpSocket *socket, SERVER_CODES request, QString mes
     }
 }
 
-
+void Server::onGameOver()
+{
+    qDebug() << "Game has finished.";
+    this->game->deleteLater();
+    this->game = nullptr;
+}
 

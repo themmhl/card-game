@@ -31,3 +31,7 @@ bool Player::isMyTurn() const {
 void Player::setMyTurn(bool isTurn) {
     myTurn = isTurn;
 }
+
+void Player::addCard(const Card& card) {
+    Hand.push_back(card);
+}
