@@ -19,6 +19,10 @@ add_executable(pofferSever
   useraccount.h useraccount.cpp
   useraccount.h useraccount.cpp
   gamehistory.h gamehistory.cpp
+        player.h
+        player.cpp
+        game.h
+        game.cpp
 )
 
 # Step 2: Link ALL the components you found to your target.

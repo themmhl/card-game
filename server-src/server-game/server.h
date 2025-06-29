@@ -10,6 +10,8 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include "useraccount.h"
+#include "player.h"
+#include "card.h"
 
 enum SERVER_CODES { LOGIN, SIGNUP, LOGOUT, EDIT_INFO, FORGOT_PASSWORD, START_GAME };
 class Server:public QObject
@@ -41,6 +43,13 @@ private:
     QMap<QString,UserAccount> dataBase;
     QMap<QTcpSocket*, QString> loggedInUsers;
     QList<QTcpSocket*> waitingQueue;
+    QList<Player*> gamePlayers;
+    Deck gameDeck;
+
+    // --- ساختارهای داده جدید ---
+    // استفاده از QVector به جای آرایه C-style امن‌تر است
+    QVector<QPair<Player*, QVector<Card>>> currentPlayerCards; // برای نگهداری دست ۷تایی هر بازیکن
+    QVector<Card> initialCards;
 
 };
 
