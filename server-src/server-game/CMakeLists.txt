@@ -23,6 +23,7 @@ add_executable(pofferSever
         player.cpp
         game.h
         game.cpp
+        a.h
 )
 
 # Step 2: Link ALL the components you found to your target.

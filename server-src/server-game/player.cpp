@@ -4,6 +4,7 @@
 Player::Player(UserAccount* account, QTcpSocket* socket, QObject *parent ):QObject(parent) {
     this->userAccount = account;
     this->clientSocket = socket;
+    myTurn = false;
 }
 
 QTcpSocket* Player::getSocket() const {
@@ -21,4 +22,12 @@ void Player::setHand(const QVector<Card>& hand) {
 }
 QVector<Card> Player::getHand() const {
     return Hand;
+}
+
+bool Player::isMyTurn() const {
+    return myTurn;
+
+}
+void Player::setMyTurn(bool isTurn) {
+    myTurn = isTurn;
 }

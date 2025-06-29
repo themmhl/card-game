@@ -12,6 +12,7 @@
 #include "useraccount.h"
 #include "player.h"
 #include "card.h"
+#include "game.h"
 
 enum SERVER_CODES { LOGIN, SIGNUP, LOGOUT, EDIT_INFO, FORGOT_PASSWORD, START_GAME };
 class Server:public QObject
@@ -45,9 +46,7 @@ private:
     QList<QTcpSocket*> waitingQueue;
     QList<Player*> gamePlayers;
     Deck gameDeck;
-
-    // --- ساختارهای داده جدید ---
-    // استفاده از QVector به جای آرایه C-style امن‌تر است
+    std::nullptr_t game;
     QVector<QPair<Player*, QVector<Card>>> currentPlayerCards; // برای نگهداری دست ۷تایی هر بازیکن
     QVector<Card> initialCards;
 

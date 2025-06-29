@@ -8,6 +8,8 @@ Server::Server(QObject *parent): QObject(parent)
 {
     tcpServer = new QTcpServer(this);
 
+    game = nullptr;
+
     connect(tcpServer, &QTcpServer::newConnection,this,&Server::handleNewConnection);
     connect(this, &Server::gameReadyToStart, this, &Server::triggerNewGame);
 }
