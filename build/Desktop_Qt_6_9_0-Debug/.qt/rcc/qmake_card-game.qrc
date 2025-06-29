@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/card-game">
-    <file alias="qmldir">/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card-game/qmldir</file>
-  </qresource>
-</RCC>
-
