@@ -1,0 +1,196 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-a1ae4d65dc25e6756f84.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "card_game",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_aotstats::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_aotstats-Debug-71a3ff243fabf5d04f2f.json",
+					"name" : "all_aotstats",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-8db1be207d36e92055a8.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-440e5de1723390dc0e6b.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-555e6dc51db7cd18cd8b.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-bd1d07fb25fbcf28b935.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game-Debug-bebd118d5a4abfc8b38f.json",
+					"name" : "card_game",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_autogen-Debug-8e9e5540facd607eab47.json",
+					"name" : "card_game_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_autogen_timestamp_deps-Debug-7444ae5c9a7adb11c6ee.json",
+					"name" : "card_game_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_copy_qml::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_copy_qml-Debug-74e90306cec1f95fb312.json",
+					"name" : "card_game_copy_qml",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_copy_res::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_copy_res-Debug-2c8678732e66738e93fc.json",
+					"name" : "card_game_copy_res",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_other_files::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_other_files-Debug-3a9c8624e7c0bfe77872.json",
+					"name" : "card_game_other_files",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_qmllint-Debug-f57c007a505113bfbdff.json",
+					"name" : "card_game_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_qmllint_json-Debug-2b0fbbf73a13e2b8616f.json",
+					"name" : "card_game_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_qmllint_module-Debug-f65b0e87c32ca036cc92.json",
+					"name" : "card_game_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "card_game_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-card_game_qmltyperegistration-Debug-6f0f1dde57a706e8d6bd.json",
+					"name" : "card_game_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "module_card_game_aotstats_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-module_card_game_aotstats_target-Debug-3b20cf2a3371dfadd361.json",
+					"name" : "module_card_game_aotstats_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug",
+		"source" : "/home/jeff/qtprojs/card-game/client-src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

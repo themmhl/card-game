@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="/qt/qml/card-game/">
+    <file alias="Main.qml">/home/jeff/qtprojs/card-game/client-src/Main.qml</file>
+    <file alias="Card.qml">/home/jeff/qtprojs/card-game/client-src/Card.qml</file>
+    <file alias="MButton.qml">/home/jeff/qtprojs/card-game/client-src/MButton.qml</file>
+    <file alias="MTextBox.qml">/home/jeff/qtprojs/card-game/client-src/MTextBox.qml</file>
+    <file alias="MainMenu.qml">/home/jeff/qtprojs/card-game/client-src/MainMenu.qml</file>
+    <file alias="Login.qml">/home/jeff/qtprojs/card-game/client-src/Login.qml</file>
+    <file alias="ServerSetup.qml">/home/jeff/qtprojs/card-game/client-src/ServerSetup.qml</file>
+  </qresource>
+</RCC>
+

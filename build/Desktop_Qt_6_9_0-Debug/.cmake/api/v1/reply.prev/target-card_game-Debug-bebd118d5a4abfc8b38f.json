@@ -1,0 +1,1152 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "card_game"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"install",
+			"target_link_libraries",
+			"set_target_properties",
+			"include",
+			"find_package",
+			"find_dependency",
+			"_qt_internal_find_qt_dependencies",
+			"qt6_add_qml_module",
+			"qt_add_qml_module",
+			"set_property",
+			"_qt_internal_find_third_party_dependencies",
+			"_qt_internal_target_enable_qmlcachegen",
+			"qt6_target_qml_sources",
+			"add_dependencies",
+			"_qt_internal_qml_copy_files_to_build_dir",
+			"target_include_directories",
+			"_qt_internal_qml_type_registration",
+			"target_sources",
+			"qt6_extract_metatypes",
+			"__qt_propagate_generated_resource",
+			"_qt_internal_process_resource",
+			"qt6_add_resources"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Quick/Qt6QuickTargets.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Quick/Qt6QuickConfig.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6/Qt6Config.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6QmlMeta/Qt6QmlMetaTargets.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6QmlMeta/Qt6QmlMetaConfig.cmake",
+			"/home/jeff/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Quick/Qt6QuickDependencies.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Qml/Qt6QmlMacros.cmake",
+			"/home/jeff/Qt/Tools/CMake/share/cmake-3.30/Modules/FindOpenGL.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6/FindWrapOpenGL.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake",
+			"/home/jeff/Qt/6.9.0/gcc_64/lib/cmake/Qt6Core/Qt6CoreMacros.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 212,
+				"parent" : 5
+			},
+			{
+				"file" : 2,
+				"parent" : 6
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 55,
+				"parent" : 7
+			},
+			{
+				"file" : 1,
+				"parent" : 8
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 61,
+				"parent" : 9
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 43,
+				"parent" : 7
+			},
+			{
+				"file" : 8,
+				"parent" : 11
+			},
+			{
+				"command" : 7,
+				"file" : 8,
+				"line" : 45,
+				"parent" : 12
+			},
+			{
+				"command" : 6,
+				"file" : 7,
+				"line" : 137,
+				"parent" : 13
+			},
+			{
+				"command" : 5,
+				"file" : 6,
+				"line" : 76,
+				"parent" : 14
+			},
+			{
+				"file" : 5,
+				"parent" : 15
+			},
+			{
+				"command" : 4,
+				"file" : 5,
+				"line" : 55,
+				"parent" : 16
+			},
+			{
+				"file" : 4,
+				"parent" : 17
+			},
+			{
+				"command" : 3,
+				"file" : 4,
+				"line" : 61,
+				"parent" : 18
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 8,
+				"file" : 9,
+				"line" : 1252,
+				"parent" : 20
+			},
+			{
+				"command" : 2,
+				"file" : 9,
+				"line" : 596,
+				"parent" : 21
+			},
+			{
+				"command" : 6,
+				"file" : 7,
+				"line" : 137,
+				"parent" : 13
+			},
+			{
+				"command" : 5,
+				"file" : 6,
+				"line" : 76,
+				"parent" : 23
+			},
+			{
+				"file" : 13,
+				"parent" : 24
+			},
+			{
+				"command" : 4,
+				"file" : 13,
+				"line" : 43,
+				"parent" : 25
+			},
+			{
+				"file" : 12,
+				"parent" : 26
+			},
+			{
+				"command" : 11,
+				"file" : 12,
+				"line" : 36,
+				"parent" : 27
+			},
+			{
+				"command" : 6,
+				"file" : 7,
+				"line" : 36,
+				"parent" : 28
+			},
+			{
+				"command" : 5,
+				"file" : 6,
+				"line" : 76,
+				"parent" : 29
+			},
+			{
+				"file" : 11,
+				"parent" : 30
+			},
+			{
+				"command" : 5,
+				"file" : 11,
+				"line" : 13,
+				"parent" : 31
+			},
+			{
+				"file" : 10,
+				"parent" : 32
+			},
+			{
+				"command" : 10,
+				"file" : 10,
+				"line" : 712,
+				"parent" : 33
+			},
+			{
+				"command" : 3,
+				"file" : 10,
+				"line" : 710,
+				"parent" : 33
+			},
+			{
+				"command" : 13,
+				"file" : 9,
+				"line" : 916,
+				"parent" : 21
+			},
+			{
+				"command" : 12,
+				"file" : 9,
+				"line" : 3329,
+				"parent" : 36
+			},
+			{
+				"command" : 2,
+				"file" : 9,
+				"line" : 1722,
+				"parent" : 37
+			},
+			{
+				"command" : 15,
+				"file" : 9,
+				"line" : 3465,
+				"parent" : 36
+			},
+			{
+				"command" : 14,
+				"file" : 9,
+				"line" : 2870,
+				"parent" : 39
+			},
+			{
+				"command" : 15,
+				"file" : 9,
+				"line" : 3471,
+				"parent" : 36
+			},
+			{
+				"command" : 14,
+				"file" : 9,
+				"line" : 2870,
+				"parent" : 41
+			},
+			{
+				"command" : 17,
+				"file" : 9,
+				"line" : 796,
+				"parent" : 21
+			},
+			{
+				"command" : 16,
+				"file" : 9,
+				"line" : 3847,
+				"parent" : 43
+			},
+			{
+				"command" : 16,
+				"file" : 9,
+				"line" : 3872,
+				"parent" : 43
+			},
+			{
+				"command" : 19,
+				"file" : 9,
+				"line" : 3672,
+				"parent" : 43
+			},
+			{
+				"command" : 18,
+				"file" : 14,
+				"line" : 1489,
+				"parent" : 46
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3838,
+				"parent" : 43
+			},
+			{
+				"command" : 22,
+				"file" : 9,
+				"line" : 850,
+				"parent" : 21
+			},
+			{
+				"command" : 21,
+				"file" : 14,
+				"line" : 401,
+				"parent" : 49
+			},
+			{
+				"command" : 20,
+				"file" : 14,
+				"line" : 2530,
+				"parent" : 50
+			},
+			{
+				"command" : 18,
+				"file" : 14,
+				"line" : 2074,
+				"parent" : 51
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3192,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 1721,
+				"parent" : 37
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3385,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3192,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3385,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3192,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3385,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3192,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3385,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3192,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3385,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3192,
+				"parent" : 36
+			},
+			{
+				"command" : 18,
+				"file" : 9,
+				"line" : 3385,
+				"parent" : 36
+			},
+			{
+				"command" : 22,
+				"file" : 9,
+				"line" : 3487,
+				"parent" : 36
+			},
+			{
+				"command" : 21,
+				"file" : 14,
+				"line" : 401,
+				"parent" : 66
+			},
+			{
+				"command" : 20,
+				"file" : 14,
+				"line" : 2530,
+				"parent" : 67
+			},
+			{
+				"command" : 18,
+				"file" : 14,
+				"line" : 2074,
+				"parent" : 68
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-DQT_QML_DEBUG -g -std=gnu++20 -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 22,
+					"fragment" : "-fPIC"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 22,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 22,
+					"define" : "QT_NETWORK_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_OPENGL_LIB"
+				},
+				{
+					"backtrace" : 22,
+					"define" : "QT_QMLINTEGRATION_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_QMLMETA_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_QMLMODELS_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_QMLWORKERSCRIPT_LIB"
+				},
+				{
+					"backtrace" : 22,
+					"define" : "QT_QML_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "QT_QUICK_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 0,
+					"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card_game_autogen/include"
+				},
+				{
+					"backtrace" : 44,
+					"path" : "/home/jeff/qtprojs/card-game/client-src"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQml/6.9.0"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQml/6.9.0/QtQml"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtCore/6.9.0"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtCore/6.9.0/QtCore"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtCore"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/mkspecs/linux-g++"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQml"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQmlIntegration"
+				},
+				{
+					"backtrace" : 45,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtNetwork"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQuick"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtGui"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQmlMeta"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQmlModels"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtQmlWorkerScript"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "/home/jeff/Qt/6.9.0/gcc_64/include/QtOpenGL"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					22,
+					22
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				4,
+				6,
+				8,
+				10,
+				13,
+				14,
+				16,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				28
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 40,
+			"id" : "card_game_copy_qml::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 42,
+			"id" : "card_game_copy_res::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "card_game_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "card_game_autogen::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "card_game::@6890427a1f51a3e7e1df",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/tmp"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-DQT_QML_DEBUG -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/jeff/Qt/6.9.0/gcc_64/lib:",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6Quick.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6QmlMeta.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 19,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6QmlWorkerScript.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6QmlModels.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 22,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6Qml.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6Network.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6OpenGL.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 10,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6Gui.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 34,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libGLX.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 35,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libOpenGL.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 38,
+				"fragment" : "/home/jeff/Qt/6.9.0/gcc_64/lib/libQt6Core.so.6.9.0",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-Wl,-rpath-link,/home/jeff/Qt/6.9.0/gcc_64/lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "card_game",
+	"nameOnDisk" : "card_game",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files\\Generated",
+			"sourceIndexes" : 
+			[
+				0,
+				29,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				4,
+				6,
+				8,
+				10,
+				13,
+				14,
+				16,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				28
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				3,
+				5,
+				7,
+				9,
+				11
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				12,
+				15,
+				18,
+				20,
+				22,
+				24,
+				26
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card_game_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Card.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Card.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Match.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Match.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Round.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Round.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "ServerHandler.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "ServerHandler.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Player.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Player.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 47,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/meta_types/qt6card_game_debug_metatypes.json.gen",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 48,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card_game_qmltyperegistrations.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 52,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.qt/rcc/qrc_qmake_card-game.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 53,
+			"path" : "Main.qml",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 54,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_qmlcache_loader.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 55,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_Main_qml.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 56,
+			"path" : "Card.qml",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 57,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_Card_qml.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 58,
+			"path" : "MButton.qml",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 59,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_MButton_qml.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 60,
+			"path" : "MTextBox.qml",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 61,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_MTextBox_qml.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 62,
+			"path" : "MainMenu.qml",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 63,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_MainMenu_qml.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 64,
+			"path" : "Login.qml",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 65,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_Login_qml.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 69,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.qt/rcc/qrc_card_game_raw_qml_0.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card_game_autogen/timestamp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/meta_types/qt6card_game_debug_metatypes.json.gen.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card_game_qmltyperegistrations.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.qt/rcc/qrc_qmake_card-game.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_qmlcache_loader.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_Main_qml.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_Card_qml.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_MButton_qml.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_MTextBox_qml.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_MainMenu_qml.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.rcc/qmlcache/card_game_Login_qml.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/.qt/rcc/qrc_card_game_raw_qml_0.cpp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/card_game_autogen/timestamp.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/meta_types/card_game_json_file_list.txt.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/jeff/qtprojs/card-game/build/Desktop_Qt_6_9_0-Debug/meta_types/qt6card_game_debug_metatypes.json.rule",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 22,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6qml_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 22,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6core_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 22,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6network_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6quick_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6gui_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6qmlmeta_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6qmlmodels_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6qmlworkerscript_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"path" : "/home/jeff/Qt/6.9.0/gcc_64/metatypes/qt6opengl_relwithdebinfo_metatypes.json",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

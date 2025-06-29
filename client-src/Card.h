@@ -1,28 +1,43 @@
 #ifndef CARD_H
 #define CARD_H
 
-enum CardValue
-{
-    ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, SOLIDER, QUEEN, KING, BITCOIN
+#include <QObject>
+enum Suit {
+    DIAMOND,
+    DOLLAR,
+    COIN,
+    GOLD,
+    INVALID_SUIT
 };
 
-enum CardType
-{
-    COIN, DOLLAR, GOLD, DIAMOND
+enum Rank {
+    TWO, THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN,
+    SOLDIER,
+    QUEEN,
+    KING,
+    BITCOIN,
+    INVALID_RANK
 };
 
 class Card
 {
 public:
-    CardType type;
-    CardValue value;
+    Card();
+    Card(Suit suit, Rank rank);
 
-    Card(CardType _type, CardValue _value): type(_type), value(_value)
-    {
-    };
-    bool compare_value(const Card& other) const;
-    bool compare_type(const Card& other) const;
+    Suit getSuit() const;
+    Rank getRank() const;
+    bool isValid() const;
+
+    Suit cardSuit;
+    Rank cardRank;
 };
 
-
-#endif //CARD_H
+#endif // CARD_H

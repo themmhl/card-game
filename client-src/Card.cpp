@@ -1,11 +1,20 @@
 #include "Card.h"
 
-bool Card::compare_value(const Card& other) const
+Card::Card() {}
+
+Suit Card::getSuit() const
 {
-    return value > other.value;
+    return cardSuit;
 }
 
-bool Card::compare_type(const Card& other) const
+Rank Card::getRank() const
 {
-    return type >= other.type;
+    return cardRank;
+}
+
+bool Card::isValid() const
+{
+    if(cardRank == Rank::INVALID_RANK &&cardSuit == Suit::INVALID_SUIT)
+        return false;
+    return true;
 }

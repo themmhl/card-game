@@ -1,0 +1,20 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessfull": false,
+                        "column": 28,
+                        "durationMicroseconds": 320,
+                        "errorMessage": "Cannot access value for name server",
+                        "functionName": "onCompleted",
+                        "line": 12
+                    }
+                ],
+                "filepath": "/home/jeff/qtprojs/card-game/client-src/Main.qml"
+            }
+        ],
+        "moduleId": "card-game(card_game)"
+    }
+]

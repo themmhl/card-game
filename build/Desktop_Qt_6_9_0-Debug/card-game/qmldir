@@ -1,0 +1,11 @@
+module card-game
+typeinfo card_game.qmltypes
+prefer :/qt/qml/card-game/
+Main 1.0 Main.qml
+Card 1.0 Card.qml
+MButton 1.0 MButton.qml
+MTextBox 1.0 MTextBox.qml
+MainMenu 1.0 MainMenu.qml
+Login 1.0 Login.qml
+ServerSetup 1.0 ServerSetup.qml
+
