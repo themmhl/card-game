@@ -79,7 +79,6 @@ Item {
             break
         }
         path += ".JPG"
-        console.log(path)
         return path
     }
     Rectangle {

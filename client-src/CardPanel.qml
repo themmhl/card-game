@@ -8,7 +8,6 @@ Item {
     Component {
         id: card
         Card {
-            y: 30
             Behavior on x {
                 NumberAnimation {
                     duration: 200
@@ -28,7 +27,6 @@ Item {
         }
     }
     function add_card(_suit, _rank, _id) {
-        console.log((-1) ** 1)
         var xx = 0 + root.rtl * (root.width - 200)
         if (_id !== 0) {
             xx = cards[_id - 1].x + 66 * (-1) ** root.rtl
@@ -46,7 +44,7 @@ Item {
     }
 
     Component.onCompleted: {
-        for (var i = 0; i < 7; ++i) {
+        for (var i = 0; i < 4; ++i) {
             add_card(2, i, i)
         }
     }

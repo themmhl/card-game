@@ -9,13 +9,17 @@ Item {
     width: 632
     height: 800
     property string username: "Mohammad mahdi"
-    property var ongamestart: function(){}
+    property var ongamestart: function () {
+    }
+    property var onlogout: function () {
+    }
     Connections {
         target: server
+
         function onStatus_changed(data, color) {
             status.text = data
             status.color = color
-            if(data==="Opponent found. Starting match..."){
+            if (data === "Opponent found. Starting match...") {
                 root.ongamestart();
             }
         }
@@ -49,6 +53,16 @@ Item {
         anchors.top: status.bottom
         anchors.topMargin: 70
         text: "Join a Match"
+        onClicked: function () {
+            if (!server.join_game()) {
+                status.color = "red"
+                status.text = "Error: " + server.get_server_message(6)
+            }
+            else{
+                status.color = "lightblue"
+                status.text = "Waiting for other players to join..."
+            }
+        }
     }
     Text {
         text: "Logged in as:"
@@ -91,7 +105,7 @@ Item {
         height: 60
         text: "History"
         onClicked: function () {
-            server.join_game()
+            //history is unfinished
         }
     }
     MButton {
@@ -100,5 +114,10 @@ Item {
         width: 180
         height: 60
         text: "Logout"
+        onClicked: function () {
+            if (server.logout()) {
+                onlogout()
+            }
+        }
     }
 }
