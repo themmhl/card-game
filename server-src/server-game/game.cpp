@@ -41,12 +41,10 @@ QVector<Card> Game::dealCardsForTurn() {
     currentPickingHand = qMakePair(startingPlayer, handToPickForm);
     qDebug() << "dealing cards for turn";
     this->sendGameStateToAll();
-    currentState = gameState::PLAYER_TURN;
+    currentState = PLAYER_TURN;
 }
 
-void Game::handlePlayerChoice(Player* player, Card chosenCard)
-{
-}
+
 
 void Game::determineRoundWinner() {
     qDebug() << "--- Round" << this->currentRound << "Finished: Evaluating Hands ---";
@@ -54,6 +52,53 @@ void Game::determineRoundWinner() {
     QMap<Player*, HandRankType> playerHandRanks;
     HandEvaluator handEvaluator;
     handEvaluator.determineRoundWinner(gamePlayers);
+    //creat json object
+    QJsonObject roundResultPayload;
+    roundResultPayload["winner_username"] = gamePlayers[0]->getUsername();
+    roundResultPayload["winning_hand_type"] = static_cast<int>(handEvaluator.evaluateHand(gamePlayers[0]->getHand()));
+
+    QJsonArray allHandsArray;
+    for (Player* p : this->gamePlayers)
+    {
+        QJsonObject playerHandObj;
+        playerHandObj["username"] = p->getUsername();
+        QJsonArray handArray;
+        for (const Card& card : p->getHand())
+        {
+            QJsonObject cardObj;
+            cardObj["suit"] = static_cast<int>(card.getSuit());
+            cardObj["rank"] = static_cast<int>(card.getRank());
+            handArray.append(cardObj);
+        }
+        playerHandObj["hand"] = handArray;
+        allHandsArray.append(playerHandObj);
+    }
+    roundResultPayload["all_players_hands"] = allHandsArray;
+    QJsonObject scoresObj;
+    for (Player* p : this->gamePlayers)
+    {
+        scoresObj[p->getUsername()] = p->getScore();
+    }
+    roundResultPayload["current_scores"] = scoresObj;
+
+    for (Player* p : this->gamePlayers)
+    {
+        sendJsonReact(p->getSocket(),ROUND_RESULT,roundResultPayload);
+
+    }
+
+    qDebug() << "Sent ROUND_RESULT to all players.";
+    _sleep(3000);
+    for (auto p:gamePlayers) {
+        if (p->getScore() >= 2)
+        {
+            this->endGame();
+        }
+        else
+        {
+            this->startNewRound();
+        }
+    }
 
 
 
@@ -120,8 +165,8 @@ void Game::handleGetAvailableCards( QTcpSocket* socket) {
         QJsonObject entry;
         QJsonObject playerObj;
 
-        playerObj["username"] = this->currentPickingHand.first->getUsername();
-        playerObj["turn"] = this->currentPickingHand.first->isMyTurn();
+        playerObj["username"] = currentPickingHand.first->getUsername();
+        playerObj["turn"] = currentPickingHand.first->isMyTurn();
         entry["player"] = playerObj;
 
         QJsonArray handArray;
@@ -169,13 +214,12 @@ void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
     QVector<Card> remainingCards = this->currentPickingHand.second;
     remainingCards.removeOne(chosenCard);
 
+
     if (remainingCards.count()>7-countPlayers) {
         int nextPlayerIndex = (startingPlayerIndex + 1) % gamePlayers.size();
         Player* nextPlayer = gamePlayers[nextPlayerIndex];
         nextPlayer->setMyTurn(true);
-
         currentPickingHand = qMakePair(nextPlayer, remainingCards);
-        sendGameStateToAll();
     }
     else {
         if (gamePlayers[0]->getHand().size()>=5) {
@@ -187,4 +231,15 @@ void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
             dealCardsForTurn();
         }
     }
+}
+
+void Game::sendJsonReact(QTcpSocket *socket, SERVER_CODES request, QJsonObject message)
+{
+    QJsonObject responseObject;
+
+    responseObject["type"] = request;
+    responseObject["payload"] = message;
+
+    QJsonDocument responseDoc(responseObject);
+        socket->write(responseDoc.toJson());
 }

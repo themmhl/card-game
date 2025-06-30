@@ -13,6 +13,7 @@ class Player : public QObject {
     UserAccount* userAccount;
     QTcpSocket* clientSocket;
     QVector<Card> Hand;
+    int playerScore;
     bool myTurn;
 public:
     explicit Player(UserAccount* account, QTcpSocket* socket, QObject *parent = nullptr);
@@ -20,11 +21,15 @@ public:
     QTcpSocket* getSocket() const;
     QString getUsername() const;
     UserAccount* getAccount() const;
+    QVector<Card> getHand() const;
+    int getScore() const;
+
     bool isMyTurn() const;
     void setMyTurn(bool isTurn);
     void setHand(const QVector<Card>& hand);
     void addCard(const Card& card);
-    QVector<Card> getHand() const;
+    void setPlayerScore(int score);
+    void appendPlayerScore(int score);
 
 };
 #endif //PLAYER_H

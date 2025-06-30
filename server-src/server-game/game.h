@@ -17,6 +17,8 @@ class Game : public QObject {
     void determineRoundWinner();
     void endGame();
     void sendGameStateToAll();
+    void sendJsonReact(QTcpSocket *socket, SERVER_CODES request, QJsonObject message);
+
     QJsonDocument buildGameStateDoc(SERVER_CODES code);
 
     QList<Player*> gamePlayers;

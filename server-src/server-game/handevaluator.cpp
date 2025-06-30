@@ -38,6 +38,7 @@ void HandEvaluator::determineRoundWinner(QList<Player*>& players){
        		}
         }
     }
+    players[0]->appendPlayerScore(1);
     return;
 }
 

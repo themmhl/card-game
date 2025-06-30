@@ -112,6 +112,7 @@ void Server::processClientRequest()
         break;
     case CHOOSE_CARD:
         if (this->game != nullptr)game->handlePlayerChoice(socket,requestObject);
+
         break;
     default:
         qDebug() << "Received unknown request type:" << type;

@@ -22,7 +22,7 @@ class HandEvaluator
 {
 public:
     HandEvaluator();
-    HandRankType evaluateHand(QVector<Card> hand);
+    HandRankType evaluateHand(QVector<Card> hand) ;
     void determineRoundWinner( QList<Player*>& players);
     Player* compareHands(Player* player1, Player* player2);
 

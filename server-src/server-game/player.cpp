@@ -2,8 +2,9 @@
 
 
 Player::Player(UserAccount* account, QTcpSocket* socket, QObject *parent ):QObject(parent) {
-    this->userAccount = account;
-    this->clientSocket = socket;
+    userAccount = account;
+    clientSocket = socket;
+    playerScore = 0;
     myTurn = false;
 }
 
@@ -22,6 +23,18 @@ void Player::setHand(const QVector<Card>& hand) {
 }
 QVector<Card> Player::getHand() const {
     return Hand;
+}
+
+int Player::getScore() const{
+    return playerScore;
+}
+
+void Player::setPlayerScore(int score) {
+    playerScore = score;
+}
+
+void Player::appendPlayerScore(int score) {
+    playerScore += score;
 }
 
 bool Player::isMyTurn() const {
