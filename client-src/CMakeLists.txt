@@ -3,7 +3,9 @@ project(card_game)
 
 
 set(CMAKE_CXX_STANDARD 20)
-
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 set(CMAKE_PREFIX_PATH "/home/jeff/Qt/6.9.0/gcc_64")
 
 
@@ -20,7 +22,8 @@ add_executable(card_game main.cpp
         ServerHandler.cpp
         ServerHandler.h
         Player.cpp
-        Player.h)
+        Player.h
+resources.qrc)
 qt_add_qml_module(card_game
         URI card-game
         VERSION 1.0
@@ -29,6 +32,9 @@ qt_add_qml_module(card_game
         QML_FILES MainMenu.qml
         QML_FILES Login.qml
         QML_FILES ServerSetup.qml
+        QML_FILES Playground.qml
+        QML_FILES CardPanel.qml
+        RESOURCES resources.qrc
 )
 
 

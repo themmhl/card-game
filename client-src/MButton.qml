@@ -144,7 +144,7 @@ Item {
             property: "opacity"
             from: 1
             to: 0
-            duration: 100
+            duration: 300
             onFinished: () => {
                             shape.radius = 0
                             shape.visible = false

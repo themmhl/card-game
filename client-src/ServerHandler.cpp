@@ -27,6 +27,8 @@ ServerHandler::ServerHandler(QObject* parent): QObject(parent)
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &ServerHandler::readyRead);
     // connect(socket, &QTcpSocket::error, this, &ServerHandler::error);
+    connect(socket, &QTcpSocket::errorOccurred, this, &ServerHandler::onSocketError);
+
 }
 
 bool ServerHandler::connect_to_server()
@@ -37,6 +39,16 @@ bool ServerHandler::connect_to_server()
     {
         return false;
     }
+    return true;
+}
+
+QString ServerHandler::get_server_message(int id){
+    return server_messages[id];
+}
+
+QString ServerHandler::get_error()
+{
+    return socket->errorString();
 }
 
 bool ServerHandler::sign_up(QString name, QString surname, QString email, QString phone_number, QString username,
@@ -100,7 +112,6 @@ bool ServerHandler::edit_info(QString name, QString surname, QString email, QStr
                               QString password)
 {
     QJsonObject edit_info;
-
     edit_info["type"] = EDIT_INFO;
     edit_info["name"] = name;
     edit_info["surname"] = surname;
@@ -141,6 +152,7 @@ bool ServerHandler::get_initial_cards()
     read_done = true;
     auto reply = QJsonDocument::fromJson(socket->readAll());
     read_cards_doc(reply);
+    return true;
 }
 
 bool ServerHandler::select_card(Suit suit, Rank rank)
@@ -180,6 +192,18 @@ void ServerHandler::read_cards_doc(QJsonDocument doc)
 
 bool ServerHandler::get_players()
 {
+    QJsonObject join_game_info;
+    join_game_info["type"] = GET_PLAYERS;
+    QJsonDocument doc(join_game_info);
+    socket->write(doc.toJson());
+    if (!socket->waitForReadyRead(5000))
+    {
+        return false;
+    }
+    read_done = true;
+    auto reply = QJsonDocument::fromJson(socket->readAll());
+    read_cards_doc(reply);
+    return true;
 }
 
 bool ServerHandler::read_all(SERVER_CODES type)
@@ -187,6 +211,8 @@ bool ServerHandler::read_all(SERVER_CODES type)
     if (!socket->waitForReadyRead(5000))
     {
         server_messages[type] = "Server Timeout.";
+        qInfo()<<"timeout - id: "<<type;
+        qInfo() <<"what happened? "<<socket->errorString();
         return false;
     }
 
@@ -211,8 +237,26 @@ void ServerHandler::readyRead()
     }
     QJsonObject reply = QJsonDocument::fromJson(socket->readAll()).object();
     server_messages[reply["type"].toInt()] = reply["message"].toString();
+    if(reply["message"].toString()=="SUCCESS2"){
+        emit status_changed("Opponent found. Starting match...", "green");
+    }
 }
 
-void ServerHandler::error()
+void ServerHandler::onSocketError(QAbstractSocket::SocketError socketError)
 {
+    qDebug() << "🔥 Socket error occurred:" << socketError;
+    switch (socketError) {
+    case QAbstractSocket::HostNotFoundError:
+        qDebug() << "🛑 Host not found.";
+        break;
+    case QAbstractSocket::ConnectionRefusedError:
+        qDebug() << "🛑 Connection refused by server.";
+        break;
+    case QAbstractSocket::RemoteHostClosedError:
+        qDebug() << "🔌 Remote host closed the connection.";
+        break;
+    default:
+        qDebug() << "⚠️ Unhandled socket error.";
+        break;
+    }
 }

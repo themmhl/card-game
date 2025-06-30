@@ -34,7 +34,8 @@ public slots:
     void set_ip_address(const QString& ip_address);
     QString get_ip_address() const;
     void set_port(int port);
-
+    QString get_server_message(int id);
+    QString get_error();
     int get_port() const;
     bool connect_to_server();
     bool sign_up(QString, QString, QString, QString, QString, QString);
@@ -48,9 +49,11 @@ public slots:
     bool select_card(Suit suit, Rank rank);
     void read_cards_doc(QJsonDocument doc);
     bool get_players();
+signals:
+    void status_changed(QString data, QString color);
 private slots:
     void readyRead();
-    void error();
+    void onSocketError(QAbstractSocket::SocketError socketError);
 };
 
 

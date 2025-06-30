@@ -7,7 +7,7 @@ Item {
     property alias username: usernameInput.text
     property alias password: passwordInput.text
     property int heightt: 600
-
+    property var onloginsuccess: function(){}
     Item {
         id: loginroot
         anchors.fill: parent
@@ -72,13 +72,28 @@ Item {
                 console.log("Login clicked")
                 console.log("Username: " + root.username)
                 console.log("Password: " + root.password)
-                loginroot.visible = false
-                mainmenu.username = root.username
-                mainmenu.visible = true
-                root.heightt = 800
+                if (server.login(root.username, root.password)) {
+                    loginroot.visible = false
+                    root.heightt = 800
+                    status.visible = false
+                    onloginsuccess();
+                } else {
+                    status.visible = true
+                    status.text = server.get_server_message(
+                                0) + ": " + server.get_error()
+                }
             }
         }
-
+        Text {
+            id: status
+            text: ""
+            anchors.top: loginButton.bottom
+            visible: false
+            anchors.topMargin: 4
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: "red"
+            font.pointSize: 10
+        }
         Row {
             anchors.top: loginButton.bottom
             anchors.topMargin: 20
@@ -113,6 +128,7 @@ Item {
             }
         }
     }
+
     Item {
         id: forgotroot
         visible: false
@@ -166,6 +182,7 @@ Item {
         }
 
         MButton {
+            id: change_password_button
             text: "Change Password"
             width: parent.width * 0.6
             height: 64
@@ -173,10 +190,28 @@ Item {
             anchors.topMargin: 40
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: function () {
-                root.heightt = 500
                 console.log("Username: " + phonenumber.text)
                 console.log("Password: " + newpass.text)
+                if (server.forgot_password(phonenumber.text, newpass.text)) {
+                    statuss.visible = true
+                    statuss.color = "green"
+                    statuss.text = "Password accociated with number "
+                            + phonenumber.text + "\nhas been successfully changed."
+                } else {
+                    statuss.visible = true
+                    statuss.text = server.get_server_message(4)
+                }
             }
+        }
+        Text {
+            id: statuss
+            text: ""
+            anchors.top: change_password_button.bottom
+            visible: false
+            anchors.topMargin: 4
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: "red"
+            font.pointSize: 10
         }
     }
 
@@ -312,16 +347,19 @@ Item {
             anchors.topMargin: 40
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: function () {
-                console.log("Username: " + usernamee.text)
-                console.log("Password: " + passwordd.text)
-                signuproot.visible = false
-                loginroot.visible = true
-                root.heightt = 600
+                if (server.sign_up(name.text, surname.text, email.text,
+                                   phone_number.text, usernamee.text,
+                                   passwordd.text)) {
+                    statuss.visible = true
+                    statuss.color = "green"
+                    statuss.text = "User \"" + usernamee.text
+                            + "\"\nhas been successfully registered. \nYou can login now."
+                } else {
+                    statuss.visible = true
+                    statuss.color = "red"
+                    statuss.text = server.get_server_message(1)
+                }
             }
         }
-    }
-    MainMenu {
-        id: mainmenu
-        visible: false
     }
 }

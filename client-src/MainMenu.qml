@@ -9,6 +9,18 @@ Item {
     width: 632
     height: 800
     property string username: "Mohammad mahdi"
+    property var ongamestart: function(){}
+    Connections {
+        target: server
+        function onStatus_changed(data, color) {
+            status.text = data
+            status.color = color
+            if(data==="Opponent found. Starting match..."){
+                root.ongamestart();
+            }
+        }
+    }
+
     Text {
         id: title
         text: "Poffer Card"
@@ -20,7 +32,8 @@ Item {
         color: "#0996b5"
     }
     Text {
-        text: "Join a match using\nIP Address:"
+        id: status
+        text: "Status"
         font.family: "Noto Sans"
         anchors.horizontalCenter: parent.horizontalCenter
         horizontalAlignment: Text.AlignHCenter
@@ -28,6 +41,14 @@ Item {
         anchors.topMargin: 70
         font.pixelSize: 50
         color: "#cccccc"
+    }
+    MButton {
+        width: 200
+        height: 60
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: status.bottom
+        anchors.topMargin: 70
+        text: "Join a Match"
     }
     Text {
         text: "Logged in as:"
@@ -69,6 +90,9 @@ Item {
         width: 180
         height: 60
         text: "History"
+        onClicked: function () {
+            server.join_game()
+        }
     }
     MButton {
         x: 331
@@ -76,21 +100,5 @@ Item {
         width: 180
         height: 60
         text: "Logout"
-    }
-    MTextBox {
-        anchors.horizontalCenter: parent.horizontalCenter
-        horizontalAlignment: TextInput.AlignLeft
-        y: 380
-        height: 70
-        width: 385
-        bgcolor: "#1975e8ff"
-    }
-    MButton {
-        x: 402
-        y: 386
-        height: 58
-        width: 100
-
-        text: "Join"
     }
 }

@@ -6,6 +6,7 @@ Item {
     id: root
     anchors.fill: parent
     visible: true
+    property var onAccept: function () {}
     Text {
         id: title
         text: "Poffer Card"
@@ -34,6 +35,7 @@ Item {
         height: 70
         width: 385
         bgcolor: "#1975e8ff"
+        leftPadding: height / 2
     }
     Text {
         id: status
@@ -51,13 +53,15 @@ Item {
         width: 100
         text: "Join"
         onClicked: function () {
+            server.set_port(8080)
             server.set_ip_address(textbox.text)
             if (server.connect_to_server()) {
                 status.color = "green"
                 status.text = "Connected"
+                root.onAccept()
             } else {
                 status.color = "red"
-                status.text = "Error occurred"
+                status.text = "Error occurred" + ": " + server.get_error()
             }
         }
     }
