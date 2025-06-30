@@ -18,6 +18,137 @@ HandRankType HandEvaluator::evaluateHand(QVector<Card> hand){
     if(isGOLDEN_HAND()) return HandRankType::GOLDEN_HAND;
 }
 
+void HandEvaluator::determineRoundWinner(QList<Player*>& players){
+	if (players.isEmpty())
+    {
+        return ;
+    }
+    QMap<Player*, HandRankType> playerRanks;
+    for (Player* p : players)
+    {
+        playerRanks.insert(p, evaluateHand(p->getHand()));
+    }
+    for(int i=1;i<players.size();i++){
+    	Player* firstP =players[i];
+        for(int j=i+1;j<players.size();j++){
+       		Player* secondP = players[j];
+       		if(compareHands(firstP,secondP)==secondP){
+                  players[i] = secondP;
+                  players[j] = firstP;
+       		}
+        }
+    }
+    return;
+}
+
+Player* HandEvaluator::compareHands(Player* player1, Player* player2)
+{
+    auto hand1 = player1->getHand();
+    auto hand2 = player2->getHand();
+    std::sort(hand1.begin(), hand1.end(), [](const Card& a, const Card& b){ return a.getRank() > b.getRank(); });
+    std::sort(hand2.begin(), hand2.end(), [](const Card& a, const Card& b){ return a.getRank() > b.getRank(); });
+
+
+    HandRankType rank1 = evaluateHand(hand1);
+    HandRankType rank2 = evaluateHand(hand2);
+    if (rank1 > rank2) return player1;
+    if (rank2 > rank1) return player2;
+
+    qDebug() << "Tie occurred with rank" << static_cast<int>(rank1) << ". Breaking tie...";
+
+    switch (rank1)
+    {
+        case HandRankType::GOLDEN_HAND:
+        case HandRankType::ORDER_HAND:
+        case HandRankType::SERIES:
+        {
+            for (int i = 0; i <=4; ++i)
+            {
+                if (hand1[i].getRank() > hand2[i].getRank()) return player1;
+                if (hand2[i].getRank() > hand1[i].getRank()) return player2;
+            }
+            if (hand1[0].getSuit() > hand2[0].getSuit()) return player1;
+            if (hand2[0].getSuit() > hand1[0].getSuit()) return player2;
+            break;
+        }
+        case HandRankType::FOUR_OF_A_KIND:
+        case HandRankType::PENTHOUSE_HAND:
+        case HandRankType::THREE_OF_A_KIND:
+        {
+
+            Rank setRank1 = hand1[2].getRank();
+            Rank setRank2 = hand2[2].getRank();
+            if (setRank1 > setRank2) return player1;
+            if (setRank2 > setRank1) return player2;
+            break;
+        }
+//double pair still works
+        case HandRankType::DOUBLE_PAIR:
+        {
+
+            QList<Rank> pairs1, kickers1;
+
+            QList<Rank> pairs2, kickers2;
+
+
+
+            if (pairs1[0] > pairs2[0]) return player1;
+            if (pairs2[0] > pairs1[0]) return player2;
+
+            if (pairs1[1] > pairs2[1]) return player1;
+            if (pairs2[1] > pairs1[1]) return player2;
+
+            if (kickers1[0] > kickers2[0]) return player1;
+            if (kickers2[0] > kickers1[0]) return player2;
+            break;
+        }
+//single pair still works
+        case HandRankType::SINGLE_PAIR:
+        {
+
+            Rank pairRank1, pairRank2;
+            QList<Rank> kickers1, kickers2;
+
+
+
+            if (pairRank1 > pairRank2) return player1;
+            if (pairRank2 > pairRank1) return player2;
+
+
+            for (int i = 0; i < kickers1.size(); ++i)
+            {
+                if (kickers1[i] > kickers2[i]) return player1;
+                if (kickers2[i] > kickers1[i]) return player2;
+            }
+            break;
+        }
+        case HandRankType::MSC_HAND:
+            if (hand1[0].getRank() > hand2[0].getRank()) return player1;
+            if (hand2[0].getRank() > hand1[0].getRank()) return player2;
+            if (hand1[0].getSuit() > hand2[0].getSuit()) return player1;
+            if (hand2[0].getSuit() > hand1[0].getSuit()) return player2;
+            break;
+        case HandRankType::MESSY_HAND:
+        {
+            for (int i = 0; i <=4; ++i)
+            {
+                if (hand1[i].getRank() > hand2[i].getRank()) return player1;
+                if (hand2[i].getRank() > hand1[i].getRank()) return player2;
+            }
+            for(int i = 0; i<=4; ++i) {
+                if (hand1[0].getSuit() > hand2[0].getSuit()) return player1;
+                if (hand2[0].getSuit() > hand1[0].getSuit()) return player2;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+
+
+    return player1;
+}
+
 bool HandEvaluator::isGOLDEN_HAND() {
     const Suit firstSuit = Hand[0].getSuit();
     for (int i = 1; i < 5; ++i) {

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "card.h"
+#include "player.h"
 #include <QVector>
 
 enum class HandRankType {
@@ -22,9 +23,13 @@ class HandEvaluator
 public:
     HandEvaluator();
     HandRankType evaluateHand(QVector<Card> hand);
+    void determineRoundWinner( QList<Player*>& players);
+    Player* compareHands(Player* player1, Player* player2);
+
 
 private:
     QVector<Card> Hand;
+    Player* breakTie(Player* palyer1 ,Player* palyer2);
     bool isMESSY_HAND();
     bool isSINGLE_PAIR();
     bool isDOUBLE_PAIR();

@@ -14,9 +14,8 @@
 #include "card.h"
 #include "game.h"
 #include "handlecard.h"
+#include "sharedDefs.h"
 
-enum SERVER_CODES { LOGIN, SIGNUP, LOGOUT, EDIT_INFO, FORGOT_PASSWORD, START_GAME,
-    GET_AVAILABLE_CARDS, CHOOSE_CARD};
 class Server:public QObject
 {
     Q_OBJECT
@@ -48,10 +47,6 @@ private:
     QMap<QString,UserAccount> dataBase;
     QMap<QTcpSocket*, QString> loggedInUsers;
     QList<QTcpSocket*> waitingQueue;
-    QList<Player*> gamePlayers;
-    HandleCard gameDeck;
-    QVector<QPair<Player*, QVector<Card>>> currentPlayerCards;
-    QVector<Card> initialCards;
     Game* game;
 };
 

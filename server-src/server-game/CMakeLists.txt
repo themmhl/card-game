@@ -24,6 +24,8 @@ add_executable(pofferSever
         game.h
         game.cpp
         a.h
+        handevaluator.cpp
+        sharedDefs.h
 )
 
 # Step 2: Link ALL the components you found to your target.

@@ -6,7 +6,7 @@
 #include "player.h"
 #include "handevaluator.h"
 #include "handlecard.h"
-#include "server.h"
+#include "sharedDefs.h"
 
 enum gameState{PENDING,ROUND_STARTING,DEALING_CARDS,PLAYER_TURN,EVALUATING,ROUND_OVER,GAME_OVER};
 class Game : public QObject {

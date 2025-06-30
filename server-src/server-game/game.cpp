@@ -49,7 +49,14 @@ void Game::handlePlayerChoice(Player* player, Card chosenCard)
 }
 
 void Game::determineRoundWinner() {
-    //logic of determine Round Winner;
+    qDebug() << "--- Round" << this->currentRound << "Finished: Evaluating Hands ---";
+    this->currentState = EVALUATING;
+    QMap<Player*, HandRankType> playerHandRanks;
+    HandEvaluator handEvaluator;
+    handEvaluator.determineRoundWinner(gamePlayers);
+
+
+
 }
 
 void Game::endGame() {
@@ -140,7 +147,7 @@ void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
             choosingP = p;
         }
     }
-    if (!choosingP||currentPickingHand.first != choosingP||choosingP->isMyTurn()) {
+    if (!choosingP||currentPickingHand.first != choosingP||!choosingP->isMyTurn()) {
         qDebug<<"handle choosing field";
         return;
     }
@@ -150,7 +157,7 @@ void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
         static_cast<Rank>(cardObj["rank"].toInt())
     );
     QVector<Card> handToPickForm = currentPickingHand.second;
-    if (std::find(handToPickForm.begin(), handToPickForm.end(), chosenCard) != handToPickForm.end()) {
+    if (std::find(handToPickForm.begin(), handToPickForm.end(), chosenCard) == handToPickForm.end()) {
         qDebug()<< "this card not in player hand";
         return;
     }

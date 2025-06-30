@@ -7,7 +7,6 @@ enum class Suit {
     DOLLAR,
     COIN,
     GOLD,
-    INVALID_SUIT
 };
 
 enum class Rank {
@@ -22,8 +21,7 @@ enum class Rank {
     SOLDIER,
     QUEEN,
     KING,
-    BITCOIN,
-    INVALID_RANK
+    BITCOIN
 };
 
 class Card
@@ -38,6 +36,7 @@ public:
 private:
     Suit cardSuit;
     Rank cardRank;
+
 };
 
 #endif // CARD_H
