@@ -8,6 +8,7 @@ Item {
     property color bgcolor: "#19a8a8a8"
     property int echoMode: TextInput.Normal
     property var horizontalAlignment: TextInput.AlignHCenter
+    property int leftPadding: 0
     Rectangle {
         id: rootrect
         anchors.fill: parent
@@ -18,7 +19,7 @@ Item {
         border.color: "#BA68C8"
 
         TextInput {
-            leftPadding: height / 2
+            leftPadding: root.leftPadding
             id: textbox
             text: ""
             anchors.centerIn: parent
@@ -40,6 +41,10 @@ Item {
                     rootrect.color.a = 0.1
                 }
             }
+            onTextChanged: {
+                root.text = text
+            }
+
             echoMode: root.echoMode
         }
         SequentialAnimation {
