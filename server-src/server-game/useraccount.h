@@ -19,12 +19,11 @@ public:
     void setPhoneNumber(const QString &phoneNumber);
     void setFirstName(const QString &firstName);
     void setLastName(const QString &lastName);
-    QList<GameHistory> getGameHistory() const;
     void setHashedPassword(const QString& password);
     void setPassword(const QString &password);
     bool checkPassword(const QString &plainPassword) const;
+    QList<GameHistory> getGameHistory() const;
     void addGameToHistory(const GameHistory &history);
-private:
 private:
     QString username;
     QString hashedPassword;

@@ -112,6 +112,11 @@ void Server::processClientRequest()
         break;
     case CHOOSE_CARD:
         if (this->game != nullptr)game->handlePlayerChoice(socket,requestObject);
+        break;
+    case TIMEOUT:
+
+        break;
+    case PAUSE_GAME:
 
         break;
     default:
@@ -154,6 +159,7 @@ void Server::triggerNewGame()
     responseToPlayer2["opponent_username"] = username1;
     player2Socket->write(QJsonDocument(responseToPlayer2).toJson());
     connect(this->game, &Game::gameOver, this, &Server::onGameOver);
+
     game->startGame();
 }
 
@@ -166,7 +172,7 @@ void Server::handleStartGame(const QJsonObject &request, QTcpSocket *socket)
     }
     waitingQueue.append(socket);
     QString username = loggedInUsers.value(socket);
-    qDebug() << "MATCHMAKING: user" << username << " queue size:" << this->waitingQueue.size();
+    qDebug() << "handleStartGame:: startGame";
     this->sendJsonReact(socket, START_GAME, "SUCCESS");
 }
 

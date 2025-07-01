@@ -7,8 +7,9 @@
 #include "handevaluator.h"
 #include "handlecard.h"
 #include "sharedDefs.h"
+#include <QTimer>
 
-enum gameState{PENDING,ROUND_STARTING,DEALING_CARDS,PLAYER_TURN,EVALUATING,ROUND_OVER,GAME_OVER};
+enum gameState{PENDING,ROUND_STARTING,DEALING_CARDS,PLAYER_TURN,EVALUATING,ROUND_OVER,GAME_OVER2};
 class Game : public QObject {
     Q_OBJECT
     void startNewRound();
@@ -28,8 +29,13 @@ class Game : public QObject {
     gameState currentState;
     QVector<Card> initialCards;
     QPair<Player*, QVector<Card>> currentPickingHand;
+    Player* pauser;
+    QTimer* pauseTimer;
+    QMap<Player*, int> stopRequestCount;
 signals:
     void gameOver();
+private slots:
+    void onPauseTimeout();
 public:
     explicit Game(const QList<Player*>& players, QObject *parent = nullptr);
     void startGame();
