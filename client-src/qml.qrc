@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+    <file>Login.qml</file>
+    <file>main.qml</file>
+    <file>MainMenu.qml</file>
+    <file>MButton.qml</file>
+    <file>MTextBox.qml</file>
+    </qresource>
+</RCC>

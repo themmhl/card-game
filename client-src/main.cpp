@@ -1,7 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-
+#include "Player.h"
+#include "Card.h"
+#include "Match.h"
+#include "Round.h"
 #include "ServerHandler.h"
 
 int main(int argc, char *argv[])

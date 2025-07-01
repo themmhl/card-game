@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Effects
 import QtQuick.Shapes
 
+
 Item {
     id: root
     property string text: "edfg"
