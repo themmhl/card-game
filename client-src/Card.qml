@@ -172,7 +172,7 @@ Item {
             target: root
             property: "currentAlpha"
             from: 0.8
-            to: 0.5
+            to: 0.4
             duration: 150
         }
 
@@ -180,7 +180,7 @@ Item {
             id: mouseup
             target: root
             property: "currentAlpha"
-            from: 0.5
+            from: 0.4
             to: 0.8
             duration: 200
         }

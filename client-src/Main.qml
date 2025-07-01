@@ -36,7 +36,7 @@ Window {
             playground.visible = true
         }
 
-        onlogout:function(){
+        onlogout: function () {
             main_menu.visible = false
             login_page.visible = true
         }
@@ -54,7 +54,7 @@ Window {
     Playground {
         anchors.fill: parent
         Component.onCompleted: {
-            root.height = 720
+            root.height = 800
             root.width = 1280
         }
     }
