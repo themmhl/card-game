@@ -34,10 +34,20 @@ Item {
             my_available.clearCards()
         }
 
-        function onShow_status(text){
+        function onShow_status(text) {
             status.visible = true
             status.status_text = text
             status.opacity = 1
+            pause.running = true
+        }
+    }
+
+    PauseAnimation {
+        id: pause
+        duration: 4000
+        onFinished: {
+            status.visible = false
+            status.opacity = 0
         }
     }
     Image {
@@ -59,10 +69,11 @@ Item {
             y: 10
             height: 54
             width: 180
-            onClicked: function(){
+            onClicked: function () {
                 status.visible = true
                 status.status_text = "test shit"
                 status.opacity = 1
+                pause.running = true
             }
         }
         Row {
@@ -187,8 +198,8 @@ Item {
         visible: false
         property string status_text: "You Lost."
         opacity: 0
-        Behavior on opacity{
-            NumberAnimation{
+        Behavior on opacity {
+            NumberAnimation {
                 duration: 500
             }
         }

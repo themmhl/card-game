@@ -7,7 +7,7 @@ Window {
     visible: true
     title: qsTr("Hello World")
     color: "#2e2e2e"
-
+/*
     ServerSetup {
         id: server_page
         onAccept: function () {
@@ -41,20 +41,18 @@ Window {
             login_page.visible = true
         }
     }
-    Playground {
-        id: playground
-    }
     Card {
         width: 305
         height: 400
         suit: 3
         rank: 3
         anchors.centerIn: parent
-    }
+    }*/
     Playground {
+        id: playground
         anchors.fill: parent
         Component.onCompleted: {
-            root.height = 800
+            root.height = 900
             root.width = 1280
         }
     }
