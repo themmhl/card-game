@@ -107,17 +107,11 @@ void Server::processClientRequest()
         break;
     case GET_GAME_STATE:
         break;
-    case GET_AVAILABLE_CARDS:
-        handleGetAvailableCards(requestObject,socket);
-        break;
     case CHOOSE_CARD:
         if (this->game != nullptr)game->handlePlayerChoice(socket,requestObject);
         break;
-    case TIMEOUT:
-
-        break;
     case PAUSE_GAME:
-
+        if (game != nullptr) game->handlePauseRequest(socket);
         break;
     default:
         qDebug() << "Received unknown request type:" << type;

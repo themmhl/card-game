@@ -5,6 +5,8 @@ Player::Player(UserAccount* account, QTcpSocket* socket, QObject *parent ):QObje
     userAccount = account;
     clientSocket = socket;
     playerScore = 0;
+    pauseRequestingCount = 2;
+    notChoosingCardCount = 2;
     myTurn = false;
 }
 
@@ -35,6 +37,24 @@ void Player::setPlayerScore(int score) {
 
 void Player::appendPlayerScore(int score) {
     playerScore += score;
+}
+
+bool Player::minusPauseRequestingCount() {
+    //return pauseRequestingCount-->0? true: false;
+    pauseRequestingCount--;
+    if (pauseRequestingCount>=0) {
+        return true;
+    }
+    return false;
+}
+
+bool Player::minusNotChoosingCardCount() {
+    //return notChoosingCardCount-->0? true: false;
+    notChoosingCardCount--;
+    if (notChoosingCardCount>=0) {
+        return true;
+    }
+    return false;
 }
 
 bool Player::isMyTurn() const {

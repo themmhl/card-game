@@ -32,11 +32,12 @@ public:
 
     Suit getSuit() const;
     Rank getRank() const;
-    bool isValid() const;
+    friend bool operator==(const Card& lhs, const Card& rhs) ;
 private:
     Suit cardSuit;
     Rank cardRank;
 
 };
+
 
 #endif // CARD_H

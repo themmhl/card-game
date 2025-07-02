@@ -2,19 +2,71 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 
+void Game::onTurnTimeout() {
+    Player* currentPlayer = currentPickingHand.first;
+    if (!currentPlayer) return;
+
+    if (isExtraTime) {
+
+        turnTimer->stop();
+        qDebug() << "onTurnTimout::Player" << currentPlayer->getUsername() << "timed out completely.";
+        if (currentPickingHand.first->minusNotChoosingCardCount()) {
+            qDebug() << "onTurnTimout::Player" << currentPlayer->getUsername() << "has opportunity at minus choosing cards.";
+            Card randomCard = currentPickingHand.second.first();
+            QVector<Card> remainingCards = currentPickingHand.second;
+            remainingCards.removeOne(randomCard);
+
+            if (remainingCards.count()>7-gamePlayers.size()) {
+                int nextPlayerIndex = (startingPlayerIndex + 1) % gamePlayers.size();
+                Player* nextPlayer = gamePlayers[nextPlayerIndex];
+                nextPlayer->setMyTurn(true);
+                currentPickingHand = qMakePair(nextPlayer, remainingCards);
+                handleGetAvailableCards(nextPlayer->getSocket());
+            }
+            else {
+                if (gamePlayers[0]->getHand().size()>=5) {
+
+                    determineRoundWinner();
+                }
+                else {
+                    startingPlayerIndex = (startingPlayerIndex + 1) % gamePlayers.size();
+                    dealCardsForTurn();
+                }
+            }
+        } else {
+
+        }
+
+    } else {
+        isExtraTime = true;
+        turnTimer->start(10000);
+        qDebug() << "onTurnTimout::Player" << currentPlayer->getUsername() << "is on 10s extra time.";
+
+        QJsonObject payload;
+        payload["time_left"] = 10;
+        sendJsonReact(currentPlayer->getSocket(), EXTRA_TIME_STARTED, payload);
+    }
+}
+
+void Game::onPauseTimeout() {
+    
+}
+
 Game::Game(const QList<Player*>& players, QObject *parent ) :QObject(parent){
     gamePlayers = players;
     currentRound = 0;
     startingPlayerIndex = 0;
+    isExtraTime = false;
     pauseTimer = new QTimer(this);
+    turnTimer = new QTimer(this);
     connect(pauseTimer, SIGNAL(timeout()), this, SLOT(onPauseTimeout()));
-    currentState = PENDING;
+    connect(this->turnTimer, &QTimer::timeout, this, &Game::onTurnTimeout);
+
     qDebug() << "created game with"<<players.count();
 }
 
 void Game::startGame() {
     qDebug() << "game is starting!";
-    currentState = ROUND_STARTING;
     startNewRound();
 }
 
@@ -35,8 +87,10 @@ void Game::startNewRound() {
             initialCards.insert(player, deck.dealcards());
         }
 
-        std::sort(initialCards.begin(), initialCards.end(),[](const Card& card1, const Card& card2) {
-            card1.getRank()>=card2.getRank();
+        std::sort(gamePlayers.begin(), gamePlayers.end(),[&](Player* a, Player* b) {
+            Card cardA = initialCards.value(a);
+            Card cardB = initialCards.value(b);
+            return cardA.getRank() > cardB.getRank();
         });
         if (initialCards[gamePlayers[0]].getRank() == initialCards[gamePlayers[1]].getRank()) {
             isRulerIdentified = false;
@@ -67,8 +121,8 @@ void Game::startNewRound() {
     }
 }
 
-QVector<Card> Game::dealCardsForTurn() {
-    currentState = DEALING_CARDS;
+void Game::dealCardsForTurn() {
+
     Player* startingPlayer = gamePlayers[startingPlayerIndex];
     startingPlayer->setMyTurn(true);
 
@@ -79,14 +133,14 @@ QVector<Card> Game::dealCardsForTurn() {
     currentPickingHand = qMakePair(startingPlayer, handToPickForm);
     qDebug() << "dealing cards for turn";
     handleGetAvailableCards(startingPlayer->getSocket());
-    currentState = PLAYER_TURN;
+
 }
 
 
 
 void Game::determineRoundWinner() {
     qDebug() << "--- Round" << this->currentRound << "Finished: Evaluating Hands ---";
-    this->currentState = EVALUATING;
+
     QMap<Player*, HandRankType> playerHandRanks;
     HandEvaluator handEvaluator;
     handEvaluator.determineRoundWinner(gamePlayers);
@@ -126,7 +180,7 @@ void Game::determineRoundWinner() {
     }
 
     qDebug() << "Sent ROUND_RESULT to all players.";
-    _sleep(3000);
+    QThread::msleep(3000);
     for (auto p:gamePlayers) {
         if (p->getScore() >= 2)
         {
@@ -143,7 +197,7 @@ void Game::determineRoundWinner() {
 }
 
 void Game::endGame() {
-    currentState = gameState::GAME_OVER2;
+
     qDebug() << "game over";
     Player* finalWinner = nullptr;
     for(Player* p : this->gamePlayers)
@@ -246,6 +300,9 @@ void Game::handleGetAvailableCards( QTcpSocket* socket) {
     message["payload"] = payloadArray;
     socket->write(QJsonDocument(message).toJson());
 
+    isExtraTime = false;
+    turnTimer->start(20000);
+
 }
 
 void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
@@ -257,7 +314,7 @@ void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
         }
     }
     if (!choosingP||currentPickingHand.first != choosingP||!choosingP->isMyTurn()) {
-        qDebug<<"handlePlayerChoice::handle choosing field";
+        qDebug()<<"handlePlayerChoice::handle choosing field";
         return;
     }
     QJsonObject cardObj = request["chosen_card"].toObject();
@@ -287,13 +344,41 @@ void Game::handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request ) {
     }
     else {
         if (gamePlayers[0]->getHand().size()>=5) {
-            currentState = EVALUATING;
+
             determineRoundWinner();
         }
         else {
             startingPlayerIndex = (startingPlayerIndex + 1) % gamePlayers.size();
             dealCardsForTurn();
         }
+    }
+    turnTimer->stop();
+}
+
+void Game::handlePauseRequest(QTcpSocket *socket) {
+    Player* RequestingP = nullptr;
+    for (auto p : gamePlayers) {
+        if (p->getSocket() == socket) {
+            RequestingP = p;
+        }
+    }
+    if (RequestingP->minusPauseRequestingCount()) {
+        pauseTimer->start(20000);
+        qDebug()<<"handlePauseRequest::minusPauseRequestingCount is ture";
+        QJsonObject payload;
+        payload["type"] = PAUSE_REQUESTING;
+        payload["message"] = RequestingP->getUsername();
+        for (auto p : gamePlayers) {
+            p->getSocket()->write(QJsonDocument(payload).toJson());
+            emit PauseTimeout();
+        }
+    }
+    else {
+        qDebug()<<"handlePauseRequest::minusPauseRequestingCount is false";
+        QJsonObject payload;
+        payload["type"] = PAUSE_REQUESTING;
+        payload["message"] = "EXCESSIVE_USE_OF_PAUSE_REQUEST";
+        RequestingP->minusPauseRequestingCount();
     }
 }
 
@@ -307,3 +392,4 @@ void Game::sendJsonReact(QTcpSocket *socket, SERVER_CODES request, QJsonObject m
     QJsonDocument responseDoc(responseObject);
         socket->write(responseDoc.toJson());
 }
+

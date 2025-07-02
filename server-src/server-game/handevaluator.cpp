@@ -6,16 +6,16 @@ HandEvaluator::HandEvaluator(){}
 HandRankType HandEvaluator::evaluateHand(QVector<Card> hand){
     std::sort(hand.begin(),hand.end(),[](const Card &a,const Card &b){return a.getRank()>b.getRank();});
     Hand = hand;
-    if(isMESSY_HAND()) return HandRankType::MESSY_HAND;
     if(isSINGLE_PAIR()) return HandRankType::SINGLE_PAIR;
-    if(isDOUBLE_PAIR()) return HandRankType::DOUBLE_PAIR;
-    if(isTHREE_OF_A_KIND()) return HandRankType::THREE_OF_A_KIND;
-    if(isSERIES()) return HandRankType::SERIES;
-    if(isMSC_HAND()) return HandRankType::MSC_HAND;
-    if(isPENTHOUSE_HAND()) return HandRankType::PENTHOUSE_HAND;
-    if(isFOUR_OF_A_KIND()) return HandRankType::FOUR_OF_A_KIND;
-    if(isORDER_HAND()) return HandRankType::ORDER_HAND;
-    if(isGOLDEN_HAND()) return HandRankType::GOLDEN_HAND;
+    else if(isDOUBLE_PAIR()) return HandRankType::DOUBLE_PAIR;
+    else if(isTHREE_OF_A_KIND()) return HandRankType::THREE_OF_A_KIND;
+    else if(isSERIES()) return HandRankType::SERIES;
+    else if(isMSC_HAND()) return HandRankType::MSC_HAND;
+    else if(isPENTHOUSE_HAND()) return HandRankType::PENTHOUSE_HAND;
+    else if(isFOUR_OF_A_KIND()) return HandRankType::FOUR_OF_A_KIND;
+    else if(isORDER_HAND()) return HandRankType::ORDER_HAND;
+    else if(isGOLDEN_HAND()) return HandRankType::GOLDEN_HAND;
+    else return HandRankType::MESSY_HAND;
 }
 
 void HandEvaluator::determineRoundWinner(QList<Player*>& players){
@@ -183,98 +183,80 @@ bool HandEvaluator::isORDER_HAND() {
     return true;
 }
 
-bool HandEvaluator::isFourOfAKind(const QVector<Card>& sortedHand) {
-    // In a sorted hand of 5, a four-of-a-kind can only be in two positions:
-    // Pattern 1: [A, A, A, A, B]
-    bool pattern1 = sortedHand[0].getRank() == sortedHand[1].getRank() &&
-                    sortedHand[1].getRank() == sortedHand[2].getRank() &&
-                    sortedHand[2].getRank() == sortedHand[3].getRank();
+bool HandEvaluator::isFOUR_OF_A_KIND() {
+    bool pattern1 = Hand[0].getRank() == Hand[1].getRank() &&Hand[1].getRank() == Hand[2].getRank() &&Hand[2].getRank() == Hand[3].getRank();
 
-    // Pattern 2: [A, B, B, B, B]
-    bool pattern2 = sortedHand[1].getRank() == sortedHand[2].getRank() &&
-                    sortedHand[2].getRank() == sortedHand[3].getRank() &&
-                    sortedHand[3].getRank() == sortedHand[4].getRank();
+    bool pattern2 = Hand[1].getRank() == Hand[2].getRank() &&Hand[2].getRank() == Hand[3].getRank() &&Hand[3].getRank() == Hand[4].getRank();
 
     return pattern1 || pattern2;
 }
 
-bool HandEvaluator::isPenthouseHand(const QVector<Card>& sortedHand) {
-    // A Penthouse Hand is a "Full House" (3 of one rank, 2 of another).
-    // In a sorted hand, it can only be in two patterns:
-    // Pattern 1: [A, A, A, B, B]
-    bool pattern1 = sortedHand[0].getRank() == sortedHand[1].getRank() &&
-                    sortedHand[1].getRank() == sortedHand[2].getRank() &&
-                    sortedHand[3].getRank() == sortedHand[4].getRank();
+bool HandEvaluator::isPENTHOUSE_HAND() {
 
-    // Pattern 2: [A, A, B, B, B]
-    bool pattern2 = sortedHand[0].getRank() == sortedHand[1].getRank() &&
-                    sortedHand[2].getRank() == sortedHand[3].getRank() &&
-                    sortedHand[3].getRank() == sortedHand[4].getRank();
+    bool pattern1 = Hand[0].getRank() == Hand[1].getRank() &&Hand[1].getRank() == Hand[2].getRank() &&Hand[3].getRank() == Hand[4].getRank();
+
+    bool pattern2 = Hand[0].getRank() == Hand[1].getRank() &&Hand[2].getRank() == Hand[3].getRank() &&Hand[3].getRank() == Hand[4].getRank();
 
     return pattern1 || pattern2;
 }
 
-bool HandEvaluator::isMscHand(const QVector<Card>& sortedHand) {
-    // An MSC Hand is a "Flush" (5 cards of the same suit, not necessarily in sequence).
-    const Suit suit = sortedHand[0].getSuit();
+bool HandEvaluator::isMSC_HAND() {
+    const Suit suit = Hand[0].getSuit();
     for (int i = 1; i < 5; ++i) {
-        if (sortedHand[i].getSuit() != suit) {
+        if (Hand[i].getSuit() != suit) {
             return false;
         }
     }
     return true;
 }
 
-bool HandEvaluator::isSeries(const QVector<Card>& sortedHand) {
-    // A Series is a "Straight" (5 cards in sequence, can be different suits).
-    // First, ensure all ranks are unique. A pair would disqualify a straight.
+bool HandEvaluator::isSERIES() {
+
     QSet<Rank> uniqueRanks;
-    for(const auto& card : sortedHand) {
+    for(const auto& card : Hand) {
         uniqueRanks.insert(card.getRank());
     }
     if(uniqueRanks.count() != 5) {
-        return false; // Not 5 unique ranks, so cannot be a straight.
+        return false;
     }
 
-    // Now, check if the ranks are sequential.
     for (int i = 1; i < 5; ++i) {
-        if (static_cast<int>(sortedHand[i].getRank()) != static_cast<int>(sortedHand[i - 1].getRank()) + 1) {
+        if (static_cast<int>(Hand[i].getRank()) != static_cast<int>(Hand[i - 1].getRank()) + 1) {
             return false;
         }
     }
     return true;
 }
 
-bool HandEvaluator::isThreeOfAKind(const QVector<Card>& sortedHand) {
-    // In a sorted hand, three-of-a-kind can be in three positions:
-    // Pattern 1: [A, A, A, B, C]
-    if (sortedHand[0].getRank() == sortedHand[1].getRank() && sortedHand[1].getRank() == sortedHand[2].getRank()) return true;
-    // Pattern 2: [A, B, B, B, C]
-    if (sortedHand[1].getRank() == sortedHand[2].getRank() && sortedHand[2].getRank() == sortedHand[3].getRank()) return true;
-    // Pattern 3: [A, B, C, C, C]
-    if (sortedHand[2].getRank() == sortedHand[3].getRank() && sortedHand[3].getRank() == sortedHand[4].getRank()) return true;
+bool HandEvaluator::isTHREE_OF_A_KIND() {
+    if (Hand[0].getRank() ==Hand[1].getRank() &&Hand[1].getRank() == Hand[2].getRank()) return true;
+    if (Hand[1].getRank() == Hand[2].getRank() &&Hand[2].getRank() == Hand[3].getRank()) return true;
+    if (Hand[2].getRank() == Hand[3].getRank() &&Hand[3].getRank() == Hand[4].getRank()) return true;
 
     return false;
 }
 
-bool HandEvaluator::isDoublePair(const QVector<Card>& sortedHand) {
-    // In a sorted hand, two pairs can be in three positions:
-    // Pattern 1: [A, A, B, B, C]
-    if (sortedHand[0].getRank() == sortedHand[1].getRank() && sortedHand[2].getRank() == sortedHand[3].getRank()) return true;
-    // Pattern 2: [A, A, B, C, C]
-    if (sortedHand[0].getRank() == sortedHand[1].getRank() && sortedHand[3].getRank() == sortedHand[4].getRank()) return true;
-    // Pattern 3: [A, B, B, C, C]
-    if (sortedHand[1].getRank() == sortedHand[2].getRank() && sortedHand[3].getRank() == sortedHand[4].getRank()) return true;
+bool HandEvaluator::isDOUBLE_PAIR() {
+    if (Hand[0].getRank() == Hand[1].getRank()&& Hand[2].getRank() == Hand[3].getRank())
+        return true;
+    if (Hand[0].getRank() == Hand[1].getRank()&& Hand[3].getRank() ==Hand[4].getRank())
+        return true;
+    if (Hand[1].getRank() == Hand[2].getRank()&& Hand[3].getRank() == Hand[4].getRank())
+        return true;
 
     return false;
 }
 
-bool HandEvaluator::isSinglePair(const QVector<Card>& sortedHand) {
+bool HandEvaluator::isSINGLE_PAIR() {
     int pairCount = 0;
-    if (sortedHand[0].getRank() == sortedHand[1].getRank()) pairCount++;
-    if (sortedHand[1].getRank() == sortedHand[2].getRank()) pairCount++;
-    if (sortedHand[2].getRank() == sortedHand[3].getRank()) pairCount++;
-    if (sortedHand[3].getRank() == sortedHand[4].getRank()) pairCount++;
+    if (Hand[0].getRank()== Hand[1].getRank())
+        pairCount++;
+    if (Hand[1].getRank()== Hand[2].getRank())
+        pairCount++;
+    if (Hand[2].getRank()== Hand[3].getRank())
+        pairCount++;
+    if (Hand[3].getRank()== Hand[4].getRank())
+        pairCount++;
 
     return pairCount == 1;
 }

@@ -8,12 +8,12 @@
 #include "handlecard.h"
 #include "sharedDefs.h"
 #include <QTimer>
+#include <QThread>
 
-enum gameState{PENDING,ROUND_STARTING,DEALING_CARDS,PLAYER_TURN,EVALUATING,ROUND_OVER,GAME_OVER2};
 class Game : public QObject {
     Q_OBJECT
     void startNewRound();
-    QVector<Card> dealCardsForTurn();
+    void dealCardsForTurn();
     void handlePlayerChoice(Player *player, Card chosenCard);
     void determineRoundWinner();
     void endGame();
@@ -26,15 +26,19 @@ class Game : public QObject {
     HandleCard deck;
     int currentRound;
     int startingPlayerIndex;
-    gameState currentState;
+
     QVector<Card> initialCards;
     QPair<Player*, QVector<Card>> currentPickingHand;
     Player* pauser;
+    bool isExtraTime;
     QTimer* pauseTimer;
-    QMap<Player*, int> stopRequestCount;
+    QTimer* turnTimer;
 signals:
     void gameOver();
+
+    void PauseTimeout();
 private slots:
+    void onTurnTimeout();
     void onPauseTimeout();
 public:
     explicit Game(const QList<Player*>& players, QObject *parent = nullptr);
@@ -43,6 +47,7 @@ public:
     void handleorderPlayers();
     void handleGetAvailableCards(QTcpSocket* socket);
     void handlePlayerChoice(QTcpSocket* socket,const QJsonObject& request);
+    void handlePauseRequest(QTcpSocket* socket);
 
 
 };

@@ -11,6 +11,8 @@ class Player : public QObject {
     QTcpSocket* clientSocket;
     QVector<Card> Hand;
     int playerScore;
+    int notChoosingCardCount;
+    int pauseRequestingCount;
     bool myTurn;
 public:
     UserAccount* userAccount;
@@ -28,6 +30,7 @@ public:
     void addCard(const Card& card);
     void setPlayerScore(int score);
     void appendPlayerScore(int score);
-
+    bool minusPauseRequestingCount();
+    bool minusNotChoosingCardCount();
 };
 #endif //PLAYER_H

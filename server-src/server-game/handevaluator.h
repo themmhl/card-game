@@ -30,7 +30,7 @@ public:
 private:
     QVector<Card> Hand;
     Player* breakTie(Player* palyer1 ,Player* palyer2);
-    bool isMESSY_HAND();
+
     bool isSINGLE_PAIR();
     bool isDOUBLE_PAIR();
     bool isTHREE_OF_A_KIND();

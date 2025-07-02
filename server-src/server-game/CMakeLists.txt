@@ -17,15 +17,16 @@ add_executable(pofferSever
   server.h
   server.cpp
   useraccount.h useraccount.cpp
-  useraccount.h useraccount.cpp
   gamehistory.h gamehistory.cpp
         player.h
         player.cpp
         game.h
         game.cpp
         a.h
-        handevaluator.cpp
+        handevaluator.h handevaluator.cpp
         sharedDefs.h
+         card.h card.cpp
+         handlecard.h handlecard.cpp
 )
 
 # Step 2: Link ALL the components you found to your target.
