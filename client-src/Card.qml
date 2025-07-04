@@ -66,7 +66,7 @@ Item {
             path += "10"
             break
         case 9:
-            path += "Solider"
+            path += "Soldier"
             break
         case 10:
             path += "Queen"

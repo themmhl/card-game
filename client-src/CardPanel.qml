@@ -7,12 +7,17 @@ Item {
     property int _id: 0
     property bool rtl: false
     property bool select_enabled: false
+    property bool flip: false
+
     function clearCards() {
         for (var i = 0; i < cards.length; ++i) {
             cards[i].destroy();
         }
         cards = [];
+        _id = 0
+        initial_x = []
     }
+
     Component {
         id: card
         Card {
@@ -32,13 +37,18 @@ Item {
                     cards[i].x = root.initial_x[i]
                 }
             }
-            onClicked:function(){
-                if(select_enabled){
-                    server.select_card(suit, rank)
+            onClicked: function () {
+                if (select_enabled) {
+                    if (flip) {
+                        server.select_card(suit, rank, 24)
+                    } else {
+                        server.select_card(suit, rank)
+                    }
                 }
             }
         }
     }
+
     function add_card(_suit, _rank) {
         var xx = 0 + root.rtl * (root.width - 200)
         if (_id !== 0) {
@@ -46,13 +56,13 @@ Item {
         }
         initial_x[_id] = xx
         var m = card.createObject(root, {
-                                      "card_id": _id,
-                                      "suit": _suit,
-                                      "rank": _rank,
-                                      "height": 271,
-                                      "width": 200,
-                                      "x": xx
-                                  })
+            "card_id": _id,
+            "suit": _suit,
+            "rank": _rank,
+            "height": 271,
+            "width": 200,
+            "x": xx
+        })
         cards.push(m)
         _id++;
     }

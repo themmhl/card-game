@@ -4,11 +4,15 @@ import QtQuick.Shapes
 
 Item {
     id: root
-    property string text: textbox.text
+    property string text: ""
     property color bgcolor: "#19a8a8a8"
     property int echoMode: TextInput.Normal
     property var horizontalAlignment: TextInput.AlignHCenter
     property int leftPadding: 0
+    property int fontSize: 24
+    function insert(position, text){
+        textbox.insert(position, text)
+    }
     Rectangle {
         id: rootrect
         anchors.fill: parent
@@ -21,11 +25,11 @@ Item {
         TextInput {
             leftPadding: root.leftPadding
             id: textbox
-            text: ""
+            text: root.text
             anchors.centerIn: parent
             anchors.fill: parent
             color: "white"
-            font.pointSize: 24
+            font.pointSize: root.fontSize
             horizontalAlignment: root.horizontalAlignment
             verticalAlignment: TextInput.AlignVCenter
             z: 2

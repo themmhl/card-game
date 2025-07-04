@@ -36,6 +36,7 @@ qt_add_qml_module(card_game
         QML_FILES CardPanel.qml
         RESOURCES resources.qrc
         QML_FILES ChatPanel.qml
+        QML_FILES History.qml
 )
 
 

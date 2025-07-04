@@ -7,7 +7,7 @@ enum Suit {
     DOLLAR,
     COIN,
     GOLD,
-    INVALID_SUIT
+    INVALID_SUIT = 10
 };
 
 enum Rank {

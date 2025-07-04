@@ -36,6 +36,7 @@ Item {
         width: 385
         bgcolor: "#1975e8ff"
         leftPadding: height / 2
+        text: "127.0.0.1"
     }
     Text {
         id: status

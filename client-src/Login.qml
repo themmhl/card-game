@@ -7,7 +7,9 @@ Item {
     property alias username: usernameInput.text
     property alias password: passwordInput.text
     property int heightt: 600
-    property var onloginsuccess: function(){}
+    property var onloginsuccess: function () {}
+    property var onsignup: function (){}
+    property var onreturn: function (){}
     Item {
         id: loginroot
         anchors.fill: parent
@@ -73,10 +75,10 @@ Item {
                 console.log("Username: " + root.username)
                 console.log("Password: " + root.password)
                 if (server.login(root.username, root.password)) {
-                    loginroot.visible = false
+                    loginroot.visible = true
                     root.heightt = 800
                     status.visible = false
-                    onloginsuccess();
+                    onloginsuccess()
                 } else {
                     status.visible = true
                     status.text = server.get_server_message(
@@ -120,10 +122,10 @@ Item {
                 initial_color: Qt.hsva(0, 0, 0, 0)
                 color_opacity: 0.1
                 onClicked: function () {
-                    console.log("Signup clicked")
+                    onsignup()
                     loginroot.visible = false
                     signuproot.visible = true
-                    root.heightt = 900
+                    root.heightt = 1000
                 }
             }
         }
@@ -203,10 +205,23 @@ Item {
                 }
             }
         }
+        MButton {
+            id: returnnbtn
+            text: "Return"
+            width: parent.width * 0.6
+            height: 64
+            anchors.top: change_password_button.bottom
+            anchors.topMargin: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: function () {
+                forgotroot.visible = false
+                loginroot.visible = true
+            }
+        }
         Text {
             id: statuss
             text: ""
-            anchors.top: change_password_button.bottom
+            anchors.top: returnnbtn.bottom
             visible: false
             anchors.topMargin: 4
             anchors.horizontalCenter: parent.horizontalCenter
@@ -340,6 +355,7 @@ Item {
         }
 
         MButton {
+            id: sign_up_btn
             text: "Sign up"
             width: parent.width * 0.6
             height: 64
@@ -350,16 +366,40 @@ Item {
                 if (server.sign_up(name.text, surname.text, email.text,
                                    phone_number.text, usernamee.text,
                                    passwordd.text)) {
-                    statuss.visible = true
-                    statuss.color = "green"
-                    statuss.text = "User \"" + usernamee.text
+                    statusss.visible = true
+                    statusss.color = "green"
+                    statusss.text = "User \"" + usernamee.text
                             + "\"\nhas been successfully registered. \nYou can login now."
                 } else {
-                    statuss.visible = true
-                    statuss.color = "red"
-                    statuss.text = server.get_server_message(1)
+                    statusss.visible = true
+                    statusss.color = "red"
+                    statusss.text = server.get_server_message(1)
                 }
             }
+        }
+        MButton {
+            id: returnbtn
+            text: "Return"
+            width: parent.width * 0.6
+            height: 64
+            anchors.top: sign_up_btn.bottom
+            anchors.topMargin: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: function () {
+                signuproot.visible = false
+                loginroot.visible = true
+                root.onreturn()
+            }
+        }
+        Text {
+            id: statusss
+            text: ""
+            anchors.top: returnbtn.bottom
+            visible: false
+            anchors.topMargin: 4
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: "red"
+            font.pointSize: 10
         }
     }
 }
