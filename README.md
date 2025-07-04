@@ -32,4 +32,4 @@ This is a client-server card game built with C++ and Qt/QML.
 
 ## How to Run
 
-After building the project, an executable named `card_game` will be created in the build directory. Run it from your terminal: `./card_game`.
+After building the project, you'll get two execcutables named `card_game` & `pofferSever` .
