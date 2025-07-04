@@ -3,6 +3,8 @@
 #include <QString>
 #include <QList>
 #include "gamehistory.h"
+#include <QJsonObject>
+#include <QJsonArray>
 class UserAccount
 {
 public:
@@ -14,17 +16,19 @@ public:
     QString getPhoneNumber() const;
     QString getFirstName() const;
     QString getLastName() const;
+    QJsonObject toJson() const;
+    static UserAccount fromJson(const QJsonObject& obj);
+
     void setUsername(const QString &username);
     void setEmail(const QString &email);
     void setPhoneNumber(const QString &phoneNumber);
     void setFirstName(const QString &firstName);
     void setLastName(const QString &lastName);
-    QList<GameHistory> getGameHistory() const;
     void setHashedPassword(const QString& password);
     void setPassword(const QString &password);
     bool checkPassword(const QString &plainPassword) const;
+    QList<GameHistory> getGameHistory() const;
     void addGameToHistory(const GameHistory &history);
-private:
 private:
     QString username;
     QString hashedPassword;

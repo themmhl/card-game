@@ -12,7 +12,8 @@ public:
     QString getFinalResult() const;
     QList<QString> getRoundResults() const;
     QDateTime getGameDateTime() const;
-
+    QJsonObject toJson() const;
+    static GameHistory fromJson(const QJsonObject&);
     void setOpponentUsername(const QString &username);
     void setFinalResult(const QString &result);
     void setRoundResults(const QList<QString> &results);

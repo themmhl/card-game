@@ -10,8 +10,12 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include "useraccount.h"
+#include "player.h"
+#include "card.h"
+#include "game.h"
+#include "handlecard.h"
+#include "sharedDefs.h"
 
-enum SERVER_CODES { LOGIN, SIGNUP, LOGOUT, EDIT_INFO, FORGOT_PASSWORD, START_GAME };
 class Server:public QObject
 {
     Q_OBJECT
@@ -26,6 +30,7 @@ private slots:
     void handleDisconnected();
     void processClientRequest();
     void triggerNewGame();
+    void onGameOver();
 
 private:
     void handleStartGame(const QJsonObject& request, QTcpSocket* socket);
@@ -34,6 +39,8 @@ private:
     void handleLogOut(const QJsonObject& request, QTcpSocket* socket);
     void handleEditInfo(const QJsonObject& request, QTcpSocket* socket);
     void handleForgetPassword(const QJsonObject& request, QTcpSocket* socket);
+    void handleGetAvailableCards(const QJsonObject& request, QTcpSocket* socket);
+    void handleGetPlayers(const QJsonObject& request, QTcpSocket* socket);
     void sendJsonReact(QTcpSocket* socket, SERVER_CODES request,QString message);
     void addNewSocket(QTcpSocket *socket);
     QTcpServer *tcpServer;
@@ -41,7 +48,7 @@ private:
     QMap<QString,UserAccount> dataBase;
     QMap<QTcpSocket*, QString> loggedInUsers;
     QList<QTcpSocket*> waitingQueue;
-
+    Game* game;
 };
 
 

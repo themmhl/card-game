@@ -1,6 +1,7 @@
 #include "useraccount.h"
 #include <QCryptographicHash>
-
+#include <QJsonObject>
+#include <QJsonArray>
 
 UserAccount::UserAccount() {}
 UserAccount::UserAccount(const QString &username, const QString &plainPassword, const QString &email)
@@ -10,6 +11,30 @@ UserAccount::UserAccount(const QString &username, const QString &plainPassword, 
     this->email = email;
 }
 
+QJsonObject UserAccount::toJson() const {
+    QJsonObject obj;
+    obj["username"] = username;
+    obj["hashedPassword"] = hashedPassword;
+    obj["email"] = email;
+    obj["phoneNumber"] = phoneNumber;
+    obj["firstName"] = firstName;
+    obj["lastName"] = lastName;
+
+
+    return obj;
+}
+
+UserAccount UserAccount::fromJson(const QJsonObject& obj) {
+    UserAccount acc;
+    acc.username = obj["username"].toString();
+    acc.hashedPassword = obj["hashedPassword"].toString();
+    acc.email = obj["email"].toString();
+    acc.phoneNumber = obj["phoneNumber"].toString();
+    acc.firstName = obj["firstName"].toString();
+    acc.lastName = obj["lastName"].toString();
+
+    return acc;
+}
 QString UserAccount::getUsername() const {
     return username; }
 QString UserAccount::getHashedPassword() const {
@@ -31,9 +56,7 @@ void UserAccount::setPhoneNumber(const QString &phoneNumber) { this->phoneNumber
 void UserAccount::setFirstName(const QString &firstName) { this->firstName = firstName; }
 void UserAccount::setLastName(const QString &lastName) { this->lastName = lastName; }
 void UserAccount::setPassword(const QString &password){
-    QByteArray passwordBytes = password.toUtf8();
-    QByteArray hashedBytes = QCryptographicHash::hash(passwordBytes, QCryptographicHash::Sha256);
-    this->hashedPassword = hashedBytes.toHex();
+    this->hashedPassword = password;
 }
 
 void UserAccount::setHashedPassword(const QString &password)
@@ -43,8 +66,7 @@ void UserAccount::setHashedPassword(const QString &password)
 
 bool UserAccount::checkPassword(const QString &plainPassword) const {
 
-    QString hashedInputPassword =QString(QCryptographicHash::hash(plainPassword.toUtf8(), QCryptographicHash::Sha256).toHex());
-    return this->hashedPassword == hashedInputPassword;
+    return this->hashedPassword == plainPassword;
 }
 
 
