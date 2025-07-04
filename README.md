@@ -1,5 +1,5 @@
 # Card Game Project
-Created by Mohammad mahdi heydari & Hosein poorpirali
+Created by Mohammad mahdi heydari & Hosein poorpirali, 
 This is a client-server card game built with C++ and Qt/QML.
 
 ## Features
